@@ -4,6 +4,8 @@ import sequelize from '../config/database.js';
 import Client from './client.model.js';
 import Admin from './admin.model.js';
 import Rol from './rol.model.js';
+import Product from './product.model.js';
+import RefreshToken from './refresh-token.model.js';
 
 
 Rol.hasMany(Admin, {
@@ -19,12 +21,16 @@ export {
     sequelize,
     Client,
     Admin,
-    Rol
+    Rol,
+    Product,
+    RefreshToken
 };
 
 export default {
     sequelize,
     Client,
     Admin,
-    Rol
+    Rol,
+    Product,
+    RefreshToken
 };
