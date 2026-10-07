@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import statusRoutes from './status.routes.js'
+import statusRoutes from './status.routes.js';
 import clientRoutes from './client.routes.js';
 import AdminRoutes from './admin.routes.js';
 import authRoutes from './auth.routes.js';
@@ -12,8 +12,7 @@ router.use('/estado', statusRoutes);
 router.use('/client', clientRoutes);
 router.use('/admin', AdminRoutes);
 router.use('/auth', authRoutes);
+router.use('/auth', sessionRoutes);
 router.use('/products', productRoutes);
-router.use('/session', sessionRoutes);
-
 
 export default router;
