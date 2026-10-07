@@ -6,12 +6,14 @@ import {
   eliminarProducto,
 } from "../../services/adminService.js";
 import { useAdminAuth } from "../../context/AdminAuthContext.jsx";
+import { listarCategoriasAdmin } from "../../services/adminCategoryService.js";
 
 const inicial = { name: "", price: "", stock: "", category: "", image: "" };
 
 function AdminProductos() {
   const { accesoGestor } = useAdminAuth();
   const [productos, setProductos] = useState([]);
+  const [categorias, setCategorias] = useState([]);
   const [form, setForm] = useState(inicial);
   const [editando, setEditando] = useState(null);
   const [pagina, setPagina] = useState(1);
@@ -23,6 +25,15 @@ function AdminProductos() {
   const [cargando, setCargando] = useState(true);
   const [mensaje, setMensaje] = useState("");
   const [error, setError] = useState("");
+
+  const cargarCategorias = async () => {
+    try {
+      const data = await listarCategoriasAdmin();
+      setCategorias(Array.isArray(data) ? data : []);
+    } catch {
+      setCategorias([]);
+    }
+  };
 
   const cargar = async () => {
     setCargando(true);
@@ -38,6 +49,7 @@ function AdminProductos() {
     }
   };
 
+  useEffect(() => { cargarCategorias(); }, []);
   useEffect(() => { cargar(); }, [pagina, search, category, sortBy, order]);
 
   const cambiar = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
@@ -95,7 +107,7 @@ function AdminProductos() {
   return (
     <div className="space-y-6">
       <div>
-        <p className="text-xs font-bold uppercase tracking-[0.25em] text-orange-400">Catálogo</p>
+        <p className="text-xs font-bold uppercase tracking-[0.25em] text-blue-400">Catálogo</p>
         <h2 className="mt-2 text-3xl font-black text-white">Productos</h2>
         <p className="mt-1 text-sm text-slate-400">Administrá el catálogo de Momentos Felices.</p>
       </div>
@@ -114,9 +126,8 @@ function AdminProductos() {
               ["name", "Nombre", "text"],
               ["price", "Precio", "number"],
               ["stock", "Stock", "number"],
-              ["category", "Categoría", "text"],
               ["image", "URL de imagen", "url"],
-            ].map(([name, label, type]) => (
+              ].map(([name, label, type]) => (
               <label key={name} className={name === "image" ? "sm:col-span-2" : "block"}>
                 <span className="mb-2 block text-sm font-semibold text-slate-300">{label}</span>
                 <input
@@ -127,19 +138,26 @@ function AdminProductos() {
                   required={name !== "image"}
                   min={name === "price" || name === "stock" ? "0" : undefined}
                   step={name === "price" ? "0.01" : undefined}
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none focus:border-orange-500"
+                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none focus:border-blue-500"
                 />
               </label>
             ))}
           </div>
-          <button type="submit" className="mt-5 rounded-xl bg-orange-500 px-5 py-3 font-bold text-white hover:bg-orange-600">
+          <label className="mt-4 block">
+            <span className="mb-2 block text-sm font-semibold text-slate-300">Categoría</span>
+            <select name="category" value={form.category} onChange={cambiar} required className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none focus:border-blue-500">
+              <option value="">Seleccioná una categoría</option>
+              {categorias.map((categoria) => <option key={categoria.id} value={categoria.name}>{categoria.name}</option>)}
+            </select>
+          </label>
+          <button type="submit" className="mt-5 rounded-xl bg-blue-600 px-5 py-3 font-bold text-white hover:bg-blue-700">
             {editando ? "Guardar cambios" : "Crear producto"}
           </button>
         </form>
       )}
 
       <div className="grid gap-3 rounded-2xl border border-slate-700 bg-slate-900 p-4 sm:grid-cols-4">
-        <input value={search} onChange={(e) => { setSearch(e.target.value); setPagina(1); }} placeholder="Buscar..." className="rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white outline-none focus:border-orange-500" />
+        <input value={search} onChange={(e) => { setSearch(e.target.value); setPagina(1); }} placeholder="Buscar..." className="rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white outline-none focus:border-blue-500" />
         <input value={category} onChange={(e) => { setCategory(e.target.value); setPagina(1); }} placeholder="Categoría..." className="rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white outline-none focus:border-orange-500" />
         <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white">
           <option value="name">Nombre</option>
@@ -157,7 +175,7 @@ function AdminProductos() {
             <article key={p.id} className="overflow-hidden rounded-2xl border border-slate-700 bg-slate-900">
               {p.image ? <img src={p.image} alt={p.name} className="h-40 w-full object-cover" /> : <div className="flex h-40 items-center justify-center bg-slate-800 text-4xl">🍼</div>}
               <div className="p-4">
-                <p className="text-xs font-semibold uppercase text-orange-400">{p.category}</p>
+                <p className="text-xs font-semibold uppercase text-blue-400">{p.category}</p>
                 <h3 className="mt-1 font-bold text-white">{p.name}</h3>
                 <p className="mt-2 text-lg font-black text-white">$ {p.price}</p>
                 <p className="text-xs text-slate-400">Stock: {p.stock}</p>
