@@ -1,12 +1,17 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.jsx";
+import { useTheme } from "../../context/ThemeContext.jsx";
 
 function Header() {
   const { isAuthenticated, logout } = useAuth();
+  const { theme, toggleTheme } = useTheme();
+  const [menuAbierto, setMenuAbierto] = useState(false);
 
   const navigate = useNavigate();
 
   const cerrarSesion = () => {
+    setMenuAbierto(false);
     logout();
 
     navigate("/");
