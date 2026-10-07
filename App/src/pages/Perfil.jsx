@@ -110,7 +110,7 @@ function Perfil() {
     <section className="pt-8">
       <div className="mx-auto max-w-2xl">
         <div className="mb-7">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-500">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-#8B6F47">
             Mi cuenta
           </p>
           <h1 className="mt-2 text-3xl font-black text-slate-900 dark:text-white">
@@ -148,7 +148,7 @@ function Perfil() {
                 value={formulario.nombre}
                 onChange={handleChange}
                 required
-                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-orange-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-#8B6F47 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
               />
             </div>
 
@@ -162,7 +162,7 @@ function Perfil() {
                 value={formulario.email}
                 onChange={handleChange}
                 required
-                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-orange-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-#8B6F47 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
               />
             </div>
 
@@ -175,7 +175,7 @@ function Perfil() {
                 name="telefono"
                 value={formulario.telefono}
                 onChange={handleChange}
-                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-orange-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-#8B6F47 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
               />
             </div>
           </div>
@@ -190,14 +190,14 @@ function Perfil() {
               value={formulario.password}
               onChange={handleChange}
               placeholder="Dejá vacío si no querés cambiarla"
-              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-orange-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-#8B6F47 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
             />
           </div>
 
           <button
             type="submit"
             disabled={guardando}
-            className="mt-6 w-full rounded-xl bg-orange-500 py-3 font-semibold text-white transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-50"
+            className="mt-6 w-full rounded-xl bg-#8B6F47 py-3 font-semibold text-white transition hover:bg-#765C39 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {guardando ? "Guardando..." : "Guardar cambios"}
           </button>
