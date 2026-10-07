@@ -11,16 +11,12 @@ import {
     listarRoles,
 } from '../controllers/admin.controller.js';
 
+// La administración de usuarios y roles queda reservada exclusivamente al SUPERADMIN.
 router.get('/roles', verificarAdmin, verificarRolAdmin, listarRoles);
-
-router.get('/', verificarAdmin, listarAdministradores);
-
-router.get('/:id', verificarAdmin, obtenerAdministradorPorId);
-
+router.get('/', verificarAdmin, verificarRolAdmin, listarAdministradores);
+router.get('/:id', verificarAdmin, verificarRolAdmin, obtenerAdministradorPorId);
 router.post('/', verificarAdmin, verificarRolAdmin, crearAdministrador);
-
 router.put('/:id', verificarAdmin, verificarRolAdmin, actualizarAdministrador);
-
 router.delete('/:id', verificarAdmin, verificarRolAdmin, eliminarAdministrador);
 
 export default router;
