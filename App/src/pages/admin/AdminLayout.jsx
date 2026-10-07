@@ -53,7 +53,7 @@ function AdminLayout() {
                 Panel de Gestión
               </h2>
 
-              <p className="text-xs text-slate-500">Descubre Córdoba</p>
+              <p className="text-xs text-slate-500">Momentos Felices</p>
             </div>
           </div>
         </div>
@@ -136,7 +136,7 @@ function AdminLayout() {
               accesoTotal,
               accesoGestor,
               accesoAuditor,
-              puedeEscribir,
+              puedeEscribir: accesoTotal || accesoGestor,
             }}
           />
         </main>
