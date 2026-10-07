@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.jsx";
 import { useAdminAuth } from "../../context/AdminAuthContext.jsx";
 import { useTheme } from "../../context/ThemeContext.jsx";
@@ -10,6 +10,8 @@ function Header() {
   const { theme, toggleTheme } = useTheme();
   const [menuAbierto, setMenuAbierto] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const rutaActiva = (ruta) => location.pathname === ruta;
 
   const cerrarSesion = async () => {
     setMenuAbierto(false);
@@ -29,14 +31,14 @@ function Header() {
   };
 
   return (
-    <header className="absolute left-0 top-0 z-50 w-full bg-[#FFF8E7]/95 text-[#3F352A] shadow-sm backdrop-blur">
+    <header className="sticky top-0 z-50 w-full bg-[#FFF8E7]/95 text-[#3F352A] shadow-sm backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
         <Link to="/" className="text-2xl font-black tracking-tight"><span>MOMENTOS </span><span className="text-[#8B6F47]">FELICES</span></Link>
 
         <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
-          <Link to="/" className="hover:text-[#9A7B52]">Inicio</Link>
-          <Link to="/productos" className="hover:text-[#9A7B52]">Catálogo</Link>
-          {isAuthenticated && <Link to="/carrito" className="hover:text-[#9A7B52]">Carrito</Link>}
+          <Link to="/" className={rutaActiva("/") ? "rounded-lg bg-[#E8D8C3] px-3 py-2 font-bold text-[#765C39]" : "rounded-lg px-3 py-2 hover:bg-[#F3E7D3] hover:text-[#765C39]"}>Inicio</Link>
+          <Link to="/productos" className={rutaActiva("/productos") ? "rounded-lg bg-[#E8D8C3] px-3 py-2 font-bold text-[#765C39]" : "rounded-lg px-3 py-2 hover:bg-[#F3E7D3] hover:text-[#765C39]"}>Catálogo</Link>
+          {isAuthenticated && <Link to="/carrito" className={rutaActiva("/carrito") ? "rounded-lg bg-[#E8D8C3] px-3 py-2 font-bold text-[#765C39]" : "rounded-lg px-3 py-2 hover:bg-[#F3E7D3] hover:text-[#765C39]"}>Carrito</Link>}
 
           {adminAuthenticated ? (
             <>
@@ -50,7 +52,7 @@ function Header() {
             </>
           ) : (
             <>
-              <Link to="/perfil" className="hover:text-[#9A7B52]">Mi perfil</Link>
+              <Link to="/perfil" className={rutaActiva("/perfil") ? "rounded-lg bg-[#E8D8C3] px-3 py-2 font-bold text-[#765C39]" : "rounded-lg px-3 py-2 hover:bg-[#F3E7D3] hover:text-[#765C39]"}>Mi perfil</Link>
               <button type="button" onClick={cerrarSesion} className="rounded-xl bg-[#8B6F47] px-5 py-2.5 font-semibold hover:bg-[#765C39]">Cerrar sesión</button>
             </>
           )}
@@ -65,9 +67,9 @@ function Header() {
       {menuAbierto && (
         <div className="border-t border-slate-200 bg-[#FFFDF7] px-4 py-4 text-[#4A4035] dark:border-slate-800 dark:bg-slate-950 dark:text-white md:hidden">
           <nav className="flex flex-col gap-3 text-sm font-medium">
-            <button onClick={() => nav("/")} className="text-left">Inicio</button>
-            <button onClick={() => nav("/productos")} className="text-left">Catálogo</button>
-            {isAuthenticated && <button onClick={() => nav("/carrito")} className="text-left">Carrito</button>}
+            <button onClick={() => nav("/")} className={rutaActiva("/") ? "rounded-lg bg-[#E8D8C3] px-3 py-2 text-left font-bold text-[#765C39]" : "rounded-lg px-3 py-2 text-left"}>Inicio</button>
+            <button onClick={() => nav("/productos")} className={rutaActiva("/productos") ? "rounded-lg bg-[#E8D8C3] px-3 py-2 text-left font-bold text-[#765C39]" : "rounded-lg px-3 py-2 text-left"}>Catálogo</button>
+            {isAuthenticated && <button onClick={() => nav("/carrito")} className={rutaActiva("/carrito") ? "rounded-lg bg-[#E8D8C3] px-3 py-2 text-left font-bold text-[#765C39]" : "rounded-lg px-3 py-2 text-left"}>Carrito</button>}
             {adminAuthenticated ? (
               <>
                 <button onClick={() => nav("/admin")} className="text-left font-bold text-[#8B6F47]">Panel {admin?.rol ? `(${admin.rol})` : ""}</button>
@@ -80,7 +82,7 @@ function Header() {
               </>
             ) : (
               <>
-                <button onClick={() => nav("/perfil")} className="text-left">Mi perfil</button>
+                <button onClick={() => nav("/perfil")} className={rutaActiva("/perfil") ? "rounded-lg bg-[#E8D8C3] px-3 py-2 text-left font-bold text-[#765C39]" : "rounded-lg px-3 py-2 text-left"}>Mi perfil</button>
                 <button onClick={cerrarSesion} className="text-left font-semibold text-[#8B6F47]">Cerrar sesión</button>
               </>
             )}
