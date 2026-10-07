@@ -158,7 +158,7 @@ function AdminProductos() {
 
       <div className="grid gap-3 rounded-2xl border border-slate-700 bg-slate-900 p-4 sm:grid-cols-4">
         <input value={search} onChange={(e) => { setSearch(e.target.value); setPagina(1); }} placeholder="Buscar..." className="rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white outline-none focus:border-blue-500" />
-        <input value={category} onChange={(e) => { setCategory(e.target.value); setPagina(1); }} placeholder="Categoría..." className="rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white outline-none focus:border-orange-500" />
+        <select value={category} onChange={(e) => { setCategory(e.target.value); setPagina(1); }} className="rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white outline-none focus:border-blue-500"><option value="">Todas las categorías</option>{categorias.map((item) => <option key={item.id} value={item.name}>{item.name}</option>)}</select>
         <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white">
           <option value="name">Nombre</option>
           <option value="price">Precio</option>
