@@ -72,7 +72,7 @@ function Inicio() {
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {productos.map((producto) => (
               <article key={producto.id} className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
-                <img src={imagenesProductos[producto.name] || "/images/products/regalo.svg"} alt={producto.name} className="h-48 w-full object-cover" />
+                <img src={imagenesProductos[producto.name] || producto.image || "/images/products/regalo.svg"} alt={producto.name} className="h-48 w-full object-cover" />
                 <div className="p-4"><p className="text-xs font-semibold uppercase tracking-wide text-[#8B6F47]">{producto.category}</p><h3 className="mt-2 font-bold text-slate-900 dark:text-[#3F352A]">{producto.name}</h3><p className="mt-3 text-lg font-black text-slate-900 dark:text-[#3F352A]">$ {producto.price}</p><button type="button" disabled={Number(producto.stock) <= 0} onClick={() => agregar(producto)} className="mt-4 w-full rounded-xl bg-[#8B6F47] px-4 py-2.5 text-sm font-bold text-white hover:bg-[#765C39] disabled:bg-slate-300">Agregar al carrito</button></div>
               </article>
             ))}
