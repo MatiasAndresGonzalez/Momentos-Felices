@@ -146,7 +146,7 @@ export function AdminAuthProvider({ children }) {
     esGestor,
     esAuditor,
     accesoTotal: esAdmin,
-    accesoGestor: esGestor,
+    accesoGestor: esAdmin || esGestor,
     accesoAuditor: esAuditor,
     rol: admin?.rol || null,
     clienteActivo,
