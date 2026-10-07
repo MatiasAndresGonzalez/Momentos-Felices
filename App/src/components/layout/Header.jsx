@@ -71,6 +71,9 @@ function Header() {
             </>
           )}
         </nav>
+        <button type="button" onClick={toggleTheme} className="hidden rounded-lg border border-slate-300 px-3 py-2 md:block" aria-label="Cambiar tema">
+          {theme === "light" ? "Claro" : "Oscuro"}
+        </button>
       <div className="flex items-center gap-2 md:hidden">
           <button type="button" onClick={toggleTheme} className="rounded-lg border border-slate-300 px-3 py-2 dark:border-slate-700" aria-label="Cambiar tema">
             {theme === "light" ? "🌙" : "☀️"}
