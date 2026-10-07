@@ -85,17 +85,14 @@ export const registrarCliente = async (req, res) => {
 
         const cliente = await Client.create({ nombre, email, password, telefono });
 
-        const token = generarToken({
-            id: cliente.id,
-            email: cliente.email,
-            type: 'client',
-        }, JWT_SECRET_CLIENT);
+        const sesion = await issueSession(cliente, 'client');
 
         res.status(201).json({
             estado: true,
             mensaje: 'Registro de cliente exitoso',
-            token,
-            cliente: {
+            token: sesion.token,
+            refreshToken: sesion.refreshToken,
+            usuario: {
                 id: cliente.id,
                 nombre: cliente.nombre,
                 email: cliente.email,
