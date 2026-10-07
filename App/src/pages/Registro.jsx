@@ -92,12 +92,12 @@ function Registro() {
         {/* ENCABEZADO */}
         <div className="mb-7 text-center">
 
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-#8B6F47">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#8B6F47]">
             Crear cuenta
           </p>
 
           <h1 className="mt-2 text-3xl font-black text-[#3F352A]">
-            Sumate a Descubre Córdoba
+            Sumate a Momentos Felices
           </h1>
 
           <p className="mt-2 text-sm text-[#8B7A68]">
@@ -133,7 +133,7 @@ function Registro() {
                 value={nombre}
                 onChange={(e) => setNombre(e.target.value)}
                 required
-                className="w-full rounded-xl border border-[#D9C2A6] px-4 py-3 outline-none transition focus:border-#8B6F47"
+                className="w-full rounded-xl border border-[#D9C2A6] px-4 py-3 outline-none transition focus:border-[#8B6F47]"
               />
             </div>
 
@@ -148,7 +148,7 @@ function Registro() {
                 placeholder="Tu apellido"
                 value={apellido}
                 onChange={(e) => setApellido(e.target.value)}
-                className="w-full rounded-xl border border-neutral-300 px-4 py-3 outline-none transition focus:border-#8B6F47"
+                className="w-full rounded-xl border border-neutral-300 px-4 py-3 outline-none transition focus:border-[#8B6F47]"
               />
             </div>
 
@@ -164,7 +164,7 @@ function Registro() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full rounded-xl border border-neutral-300 px-4 py-3 outline-none transition focus:border-#8B6F47"
+                className="w-full rounded-xl border border-neutral-300 px-4 py-3 outline-none transition focus:border-[#8B6F47]"
               />
             </div>
 
@@ -179,7 +179,7 @@ function Registro() {
                 placeholder="Tu teléfono"
                 value={telefono}
                 onChange={(e) => setTelefono(e.target.value)}
-                className="w-full rounded-xl border border-neutral-300 px-4 py-3 outline-none transition focus:border-#8B6F47"
+                className="w-full rounded-xl border border-neutral-300 px-4 py-3 outline-none transition focus:border-[#8B6F47]"
               />
             </div>
 
@@ -198,7 +198,7 @@ function Registro() {
               value={contrasenia}
               onChange={(e) => setContrasenia(e.target.value)}
               required
-              className="w-full rounded-xl border border-neutral-300 px-4 py-3 outline-none transition focus:border-#8B6F47"
+              className="w-full rounded-xl border border-neutral-300 px-4 py-3 outline-none transition focus:border-[#8B6F47]"
             />
 
           </div>
@@ -207,7 +207,7 @@ function Registro() {
           <button
             type="submit"
             disabled={enviando}
-            className="mt-6 w-full rounded-xl bg-#8B6F47 py-3 font-semibold text-white transition hover:bg-#765C39 disabled:cursor-not-allowed disabled:opacity-50"
+            className="mt-6 w-full rounded-xl bg-[#8B6F47] py-3 font-semibold text-white transition hover:bg-[#765C39] disabled:cursor-not-allowed disabled:opacity-50"
           >
             {enviando
               ? 'Creando cuenta...'
@@ -223,7 +223,7 @@ function Registro() {
 
           <Link
             to="/login"
-            className="font-semibold text-#765C39 hover:text-orange-700"
+            className="font-semibold text-[#765C39] hover:text-[#8B6F47]"
           >
             Ingresá
           </Link>
