@@ -37,7 +37,7 @@ export const generarToken = (
         payload,
         secret,
         {
-            expiresIn: '24h',
+            expiresIn: '15m',
         }
     );
 };
