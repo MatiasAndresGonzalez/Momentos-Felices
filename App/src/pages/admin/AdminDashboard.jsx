@@ -9,7 +9,7 @@ function AdminDashboard() {
       <div className="rounded-2xl border border-[#4B5563]/80 bg-[#263244] p-6 shadow-xl">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-sm font-medium text-#9A7B52">Panel de gestión</p>
+            <p className="text-sm font-medium text-#3B82F6">Panel de gestión</p>
             <h2 className="mt-1 text-2xl font-bold tracking-tight text-white">
               ¡Hola, {admin?.nombre}!
             </h2>
@@ -20,7 +20,7 @@ function AdminDashboard() {
           </div>
 
           <div className="shrink-0">
-            <span className="inline-flex items-center rounded-full border border-#9A7B52/20 bg-#9A7B52/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-#B69A73">
+            <span className="inline-flex items-center rounded-full border border-#3B82F6/20 bg-#3B82F6/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-#93C5FD">
               {admin?.rol}
             </span>
           </div>
@@ -30,7 +30,7 @@ function AdminDashboard() {
       <div className="grid gap-6 md:grid-cols-2">
         {esAdmin && (
           <div className="rounded-2xl border border-slate-700/80 bg-slate-900 p-6 shadow-xl">
-            <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-#9A7B52/10 text-xl ring-1 ring-#9A7B52/20">
+            <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-#3B82F6/10 text-xl ring-1 ring-#3B82F6/20">
               👥
             </div>
 
@@ -41,7 +41,7 @@ function AdminDashboard() {
 
             <Link
               to="/admin/usuarios"
-              className="mt-5 inline-flex items-center rounded-xl bg-#765C39 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-orange-950/30 transition hover:bg-#8B6F47 focus:outline-none focus:ring-2 focus:ring-#9A7B52/50"
+              className="mt-5 inline-flex items-center rounded-xl bg-#1D4ED8 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-orange-950/30 transition hover:bg-#2563EB focus:outline-none focus:ring-2 focus:ring-#3B82F6/50"
             >
               Gestionar administradores
             </Link>
@@ -49,7 +49,7 @@ function AdminDashboard() {
         )}
 
         <div className={`rounded-2xl border border-slate-700/80 bg-slate-900 p-6 shadow-xl ${esAdmin ? "" : "md:col-span-2"}`}>
-          <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-#9A7B52/10 text-xl ring-1 ring-#9A7B52/20">
+          <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-#3B82F6/10 text-xl ring-1 ring-#3B82F6/20">
             🧸
           </div>
 
@@ -62,7 +62,7 @@ function AdminDashboard() {
 
           <Link
             to="/admin/productos"
-            className="mt-5 inline-flex items-center rounded-xl bg-#765C39 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-orange-950/30 transition hover:bg-#8B6F47 focus:outline-none focus:ring-2 focus:ring-#9A7B52/50"
+            className="mt-5 inline-flex items-center rounded-xl bg-#1D4ED8 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-orange-950/30 transition hover:bg-#2563EB focus:outline-none focus:ring-2 focus:ring-#3B82F6/50"
           >
             {accesoGestor ? "Gestionar productos" : "Consultar productos"}
           </Link>
