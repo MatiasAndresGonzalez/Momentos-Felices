@@ -6,6 +6,7 @@ import Admin from './admin.model.js';
 import Rol from './rol.model.js';
 import Product from './product.model.js';
 import RefreshToken from './refresh-token.model.js';
+import Category from './category.model.js';
 
 
 Rol.hasMany(Admin, {
@@ -23,7 +24,8 @@ export {
     Admin,
     Rol,
     Product,
-    RefreshToken
+    RefreshToken,
+    Category
 };
 
 export default {
@@ -32,5 +34,6 @@ export default {
     Admin,
     Rol,
     Product,
-    RefreshToken
+    RefreshToken,
+    Category
 };
