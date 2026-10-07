@@ -40,11 +40,11 @@ function AdminLayout() {
 
   return (
     <div className="admin-theme flex min-h-screen flex-col bg-slate-950 md:flex-row">
-      <aside className="flex w-full flex-col border-b border-#2563EB/70 bg-[#263244] md:min-h-screen md:w-64 md:border-b-0 md:border-r md:border-r-#2563EB/70">
+      <aside className="flex w-full flex-col border-b border-[#2563EB]/70 bg-[#263244] md:min-h-screen md:w-64 md:border-b-0 md:border-r md:border-r-[#2563EB]/70">
         <div className="border-b border-[#374151] p-5">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-#3B82F6/10 ring-1 ring-#3B82F6/20">
-              <span className="text-sm font-black text-#93C5FD">MF</span>
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#3B82F6]/10 ring-1 ring-[#3B82F6]/20">
+              <span className="text-sm font-black text-[#93C5FD]">MF</span>
             </div>
             <div>
               <h2 className="text-base font-bold text-white">Panel de Gestión</h2>
@@ -60,7 +60,7 @@ function AdminLayout() {
               to={item.to}
               end={item.to === "/admin"}
               className={({ isActive }) =>
-                `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition ${isActive ? "bg-#1D4ED8 text-white" : "text-[#D1D5DB] hover:bg-[#374151] hover:text-white"}`
+                `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition ${isActive ? "bg-[#1D4ED8] text-white" : "text-[#D1D5DB] hover:bg-[#374151] hover:text-white"}`
               }
             >
               <span>{item.icon}</span>
@@ -73,7 +73,7 @@ function AdminLayout() {
           <div className="mb-4 rounded-xl bg-slate-950/60 p-3">
             <p className="truncate text-sm font-semibold text-white">{admin?.nombre}</p>
             <p className="mt-1 text-xs text-slate-500">Rol</p>
-            <span className="text-xs font-semibold uppercase text-#3B82F6">
+            <span className="text-xs font-semibold uppercase text-[#3B82F6]">
               {admin?.rol}
             </span>
           </div>
@@ -103,7 +103,7 @@ function AdminLayout() {
               </p>
             </div>
 
-            <div className="hidden rounded-full border border-#3B82F6/20 bg-#3B82F6/10 px-3 py-1.5 text-xs font-semibold uppercase text-#93C5FD md:block">
+            <div className="hidden rounded-full border border-#3B82F6/20 bg-[#3B82F6]/10 px-3 py-1.5 text-xs font-semibold uppercase text-[#93C5FD] md:block">
               {admin?.rol}
             </div>
           </div>
