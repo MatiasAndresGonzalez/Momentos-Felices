@@ -13,8 +13,6 @@ import Productos from "./pages/Productos.jsx";
 import Login from "./pages/Login.jsx";
 import Registro from "./pages/Registro.jsx";
 import Perfil from "./pages/Perfil.jsx";
-import Excursiones from "./pages/Excursiones.jsx";
-import Favoritos from "./pages/Favoritos.jsx";
 import Carrito from "./pages/Carrito.jsx";
 import AdminRoutes from "./pages/admin/AdminRoutes.jsx";
 
@@ -37,12 +35,10 @@ function App() {
                       <Routes>
                         <Route path="/" element={<Inicio />} />
                         <Route path="/productos" element={<Productos />} />
-                        <Route path="/excursiones" element={<Excursiones />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/registro" element={<Registro />} />
                         <Route path="/perfil" element={<RutaProtegida><Perfil /></RutaProtegida>} />
                         <Route path="/carrito" element={<RutaProtegida><Carrito /></RutaProtegida>} />
-                        <Route path="/favoritos" element={<RutaProtegida><Favoritos /></RutaProtegida>} />
                       </Routes>
                     </main>
                     <Footer />
