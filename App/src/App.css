@@ -184,44 +184,44 @@
 }
 
 .admin-theme.bg-slate-950 {
-  background-color: #1b1916;
+  background-color: #1F2937;
 }
 
 .admin-theme .bg-slate-950,
 .admin-theme [class~="bg-slate-950/60"] {
-  background-color: #171614;
+  background-color: #111827;
 }
 
 .admin-theme .bg-slate-900 {
-  background-color: #24221e;
+  background-color: #1F2937;
 }
 
 .admin-theme .bg-slate-800 {
-  background-color: #302c26;
+  background-color: #374151;
 }
 
 .admin-theme .bg-slate-700 {
-  background-color: #403a32;
+  background-color: #4B5563;
 }
 
 .admin-theme .border-slate-700,
 .admin-theme [class~="border-slate-700/80"],
 .admin-theme .border-slate-800 {
-  border-color: #494137;
+  border-color: #4B5563;
 }
 
 .admin-theme .text-slate-100 {
-  color: #f0ece5;
+  color: #F3F4F6;
 }
 
 .admin-theme .text-slate-300 {
-  color: #d4cec3;
+  color: #D1D5DB;
 }
 
 .admin-theme .text-slate-400 {
-  color: #aaa195;
+  color: #9CA3AF;
 }
 
 .admin-theme .text-slate-500 {
-  color: #847b6e;
+  color: #6B7280;
 }
