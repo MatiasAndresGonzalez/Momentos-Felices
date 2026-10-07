@@ -9,6 +9,7 @@ import Header from "./components/layout/Header.jsx";
 import Footer from "./components/layout/Footer.jsx";
 
 import Inicio from "./pages/Inicio.jsx";
+import Productos from "./pages/Productos.jsx";
 import Login from "./pages/Login.jsx";
 import Registro from "./pages/Registro.jsx";
 import Perfil from "./pages/Perfil.jsx";
@@ -35,6 +36,7 @@ function App() {
                     <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-10">
                       <Routes>
                         <Route path="/" element={<Inicio />} />
+                        <Route path="/productos" element={<Productos />} />
                         <Route path="/excursiones" element={<Excursiones />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/registro" element={<Registro />} />
