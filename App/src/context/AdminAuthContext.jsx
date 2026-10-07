@@ -90,7 +90,7 @@ export function AdminAuthProvider({ children }) {
   }, [validarToken]);
 
   const login = async (email, password) => {
-    if (localStorage.getItem("token")) {
+    if (localStorage.getItem("token") || localStorage.getItem("refreshToken")) {
       setClienteActivo(true);
       const error = new Error(
         "Ya posee una sesión de Cliente activa. Para ingresar al panel de Administración, debe cerrar su sesión actual"
