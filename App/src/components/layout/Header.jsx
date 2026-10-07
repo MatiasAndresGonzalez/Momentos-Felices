@@ -29,35 +29,35 @@ function Header() {
   };
 
   return (
-    <header className="absolute left-0 top-0 z-50 w-full bg-black/90 text-white">
+    <header className="absolute left-0 top-0 z-50 w-full bg-[#FFF8E7]/95 text-[#3F352A] shadow-sm backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-        <Link to="/" className="text-2xl font-black tracking-tight"><span>MOMENTOS </span><span className="text-orange-500">FELICES</span></Link>
+        <Link to="/" className="text-2xl font-black tracking-tight"><span>MOMENTOS </span><span className="text-#8B6F47">FELICES</span></Link>
 
         <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
-          <Link to="/" className="hover:text-orange-400">Inicio</Link>
-          <Link to="/productos" className="hover:text-orange-400">Catálogo</Link>
-          {isAuthenticated && <Link to="/carrito" className="hover:text-orange-400">Carrito</Link>}
+          <Link to="/" className="hover:text-#9A7B52">Inicio</Link>
+          <Link to="/productos" className="hover:text-#9A7B52">Catálogo</Link>
+          {isAuthenticated && <Link to="/carrito" className="hover:text-#9A7B52">Carrito</Link>}
 
           {adminAuthenticated ? (
             <>
-              <Link to="/admin" className="rounded-xl bg-orange-500 px-4 py-2 font-bold hover:bg-orange-600">Panel {admin?.rol ? `(${admin.rol})` : ""}</Link>
-              <button type="button" onClick={cerrarSesionAdmin} className="hover:text-orange-400">Salir admin</button>
+              <Link to="/admin" className="rounded-xl bg-#8B6F47 px-4 py-2 font-bold hover:bg-#765C39">Panel {admin?.rol ? `(${admin.rol})` : ""}</Link>
+              <button type="button" onClick={cerrarSesionAdmin} className="hover:text-#9A7B52">Salir admin</button>
             </>
           ) : !isAuthenticated ? (
             <>
-              <Link to="/login" className="hover:text-orange-400">Ingresar</Link>
-              <Link to="/registro" className="rounded-xl bg-orange-500 px-5 py-2.5 font-semibold hover:bg-orange-600">Registrarse</Link>
+              <Link to="/login" className="hover:text-#9A7B52">Ingresar</Link>
+              <Link to="/registro" className="rounded-xl bg-#8B6F47 px-5 py-2.5 font-semibold hover:bg-#765C39">Registrarse</Link>
             </>
           ) : (
             <>
-              <Link to="/perfil" className="hover:text-orange-400">Mi perfil</Link>
-              <button type="button" onClick={cerrarSesion} className="rounded-xl bg-orange-500 px-5 py-2.5 font-semibold hover:bg-orange-600">Cerrar sesión</button>
+              <Link to="/perfil" className="hover:text-#9A7B52">Mi perfil</Link>
+              <button type="button" onClick={cerrarSesion} className="rounded-xl bg-#8B6F47 px-5 py-2.5 font-semibold hover:bg-#765C39">Cerrar sesión</button>
             </>
           )}
         </nav>
 
         <div className="flex items-center gap-2">
-          <button type="button" onClick={toggleTheme} className="rounded-lg border border-slate-300 px-3 py-2" aria-label="Cambiar tema">{theme === "light" ? "🌙" : "☀️"}</button>
+          <button type="button" onClick={toggleTheme} className="rounded-lg border border-[#D9C2A6] px-3 py-2" aria-label="Cambiar tema">{theme === "light" ? "🌙" : "☀️"}</button>
           <button type="button" onClick={() => setMenuAbierto((v) => !v)} className="rounded-lg border border-slate-300 px-3 py-2 text-xl md:hidden" aria-label="Abrir menú">{menuAbierto ? "✕" : "☰"}</button>
         </div>
       </div>
@@ -70,18 +70,18 @@ function Header() {
             {isAuthenticated && <button onClick={() => nav("/carrito")} className="text-left">Carrito</button>}
             {adminAuthenticated ? (
               <>
-                <button onClick={() => nav("/admin")} className="text-left font-bold text-orange-500">Panel {admin?.rol ? `(${admin.rol})` : ""}</button>
-                <button onClick={cerrarSesionAdmin} className="text-left font-semibold text-orange-500">Salir admin</button>
+                <button onClick={() => nav("/admin")} className="text-left font-bold text-#8B6F47">Panel {admin?.rol ? `(${admin.rol})` : ""}</button>
+                <button onClick={cerrarSesionAdmin} className="text-left font-semibold text-#8B6F47">Salir admin</button>
               </>
             ) : !isAuthenticated ? (
               <>
                 <button onClick={() => nav("/login")} className="text-left">Ingresar</button>
-                <button onClick={() => nav("/registro")} className="text-left font-semibold text-orange-500">Registrarse</button>
+                <button onClick={() => nav("/registro")} className="text-left font-semibold text-#8B6F47">Registrarse</button>
               </>
             ) : (
               <>
                 <button onClick={() => nav("/perfil")} className="text-left">Mi perfil</button>
-                <button onClick={cerrarSesion} className="text-left font-semibold text-orange-500">Cerrar sesión</button>
+                <button onClick={cerrarSesion} className="text-left font-semibold text-#8B6F47">Cerrar sesión</button>
               </>
             )}
           </nav>
