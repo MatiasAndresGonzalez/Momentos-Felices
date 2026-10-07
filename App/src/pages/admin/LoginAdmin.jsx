@@ -134,7 +134,7 @@ function LoginAdmin() {
           <button
             type="submit"
             disabled={enviando}
-            className="w-full rounded-xl bg-[#1D4ED8] px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-950/30 transition-colors duration-200 hover:bg-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#3B82F6]/50 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:cursor-not-allowed disabled:opacity-50"
+            className="w-full rounded-xl bg-[#1D4ED8] px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-950/30 transition-colors duration-200 hover:bg-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#3B82F6]/50 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
           >
             {enviando ? "Ingresando..." : "Ingresar al panel"}
           </button>
