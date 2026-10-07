@@ -92,16 +92,16 @@ function Productos() {
       {mensaje && <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-700">{mensaje}</div>}
 
       <div className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:grid-cols-3">
-        <input type="search" value={busqueda} onChange={cambiarBusqueda} placeholder="Buscar productos..." className="rounded-xl border border-slate-300 bg-transparent px-4 py-3 text-sm outline-none focus:border-[#8B6F47] dark:border-slate-700" />
-        <select value={categoria} onChange={cambiarCategoria} className="rounded-xl border border-slate-300 bg-transparent px-4 py-3 text-sm outline-none focus:border-[#8B6F47] dark:border-slate-700">
-          <option value="">Todas las categorías</option>
-          {categorias.map((item) => <option key={item} value={item}>{item}</option>)}
+        <input type="search" value={busqueda} onChange={cambiarBusqueda} placeholder="Buscar productos..." className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-[#3F352A] outline-none focus:border-[#8B6F47] dark:border-slate-700 dark:bg-[#F3E7D3] dark:text-[#3F352A]" />
+        <select value={categoria} onChange={cambiarCategoria} className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-[#3F352A] outline-none focus:border-[#8B6F47] dark:border-slate-700 dark:bg-[#F3E7D3] dark:text-[#3F352A]">
+          <option value="" className="bg-white text-[#3F352A]">Todas las categorías</option>
+          {categorias.map((item) => <option key={item} value={item} className="bg-white text-[#3F352A]">{item}</option>)}
         </select>
         <select value={orden} onChange={(event) => { setOrden(event.target.value); setPagina(1); }} className="rounded-xl border border-slate-300 bg-transparent px-4 py-3 text-sm outline-none focus:border-[#8B6F47] dark:border-slate-700">
-          <option value="name-ASC">Nombre A-Z</option>
-          <option value="name-DESC">Nombre Z-A</option>
-          <option value="price-ASC">Precio menor a mayor</option>
-          <option value="price-DESC">Precio mayor a menor</option>
+          <option value="name-ASC" className="bg-white text-[#3F352A]">Nombre A-Z</option>
+          <option value="name-DESC" className="bg-white text-[#3F352A]">Nombre Z-A</option>
+          <option value="price-ASC" className="bg-white text-[#3F352A]">Precio menor a mayor</option>
+          <option value="price-DESC" className="bg-white text-[#3F352A]">Precio mayor a menor</option>
         </select>
       </div>
 
