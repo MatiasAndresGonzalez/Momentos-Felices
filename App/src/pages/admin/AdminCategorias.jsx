@@ -1,173 +1,119 @@
-import { useEffect, useState } from 'react';
-import { useAdminAuth } from '../../context/AdminAuthContext.jsx';
-import {
-	listarCategorias,
-	crearCategoria,
-	actualizarCategoria,
-	eliminarCategoria,
-} from '../../services/adminService.js';
+import { useEffect, useState } from "react";
+import { listarCategoriasAdmin, crearCategoria, actualizarCategoria, eliminarCategoria } from "../../services/adminCategoryService.js";
+import { useAdminAuth } from "../../context/AdminAuthContext.jsx";
 
-const formularioInicial = { nombre: '' };
+const inicial = { name: "", description: "" };
 
 function AdminCategorias() {
-	const { accesoGestor } = useAdminAuth();
-	const [categorias, setCategorias] = useState([]);
-	const [form, setForm] = useState(formularioInicial);
-	const [editandoId, setEditandoId] = useState(null);
-	const [cargando, setCargando] = useState(true);
-	const [error, setError] = useState('');
-	const [mensaje, setMensaje] = useState('');
+  const { accesoGestor } = useAdminAuth();
+  const [categorias, setCategorias] = useState([]);
+  const [form, setForm] = useState(inicial);
+  const [editando, setEditando] = useState(null);
+  const [cargando, setCargando] = useState(true);
+  const [mensaje, setMensaje] = useState("");
+  const [error, setError] = useState("");
 
-	const cargarCategorias = async () => {
-		try {
-			setCargando(true);
-			setError('');
-			const data = await listarCategorias();
-			setCategorias(data || []);
-		} catch (err) {
-			setError(err.message || 'Error al cargar las categorías.');
-		} finally {
-			setCargando(false);
-		}
-	};
+  const cargar = async () => {
+    setCargando(true);
+    try {
+      const data = await listarCategoriasAdmin();
+      setCategorias(Array.isArray(data) ? data : []);
+    } catch (err) {
+      setError(err.message || "No se pudieron cargar las categorías.");
+    } finally {
+      setCargando(false);
+    }
+  };
 
-	useEffect(() => {
-		cargarCategorias();
-	}, []);
+  useEffect(() => { cargar(); }, []);
 
-	const limpiarFormulario = () => {
-		setForm(formularioInicial);
-		setEditandoId(null);
-	};
+  const guardar = async (e) => {
+    e.preventDefault();
+    setMensaje("");
+    setError("");
+    try {
+      if (editando) {
+        await actualizarCategoria(editando, form);
+        setMensaje("Categoría actualizada correctamente.");
+      } else {
+        await crearCategoria(form);
+        setMensaje("Categoría creada correctamente.");
+      }
+      setForm(inicial);
+      setEditando(null);
+      await cargar();
+    } catch (err) {
+      setError(err.message || "No se pudo guardar la categoría.");
+    }
+  };
 
-	const handleSubmit = async (event) => {
-		event.preventDefault();
-		setError('');
-		setMensaje('');
+  const editar = (categoria) => {
+    setEditando(categoria.id);
+    setForm({ name: categoria.name || "", description: categoria.description || "" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
-		const nombre = form.nombre.trim();
-		if (!nombre) {
-			setError('El nombre de la categoría es obligatorio.');
-			return;
-		}
+  const eliminar = async (id) => {
+    if (!window.confirm("¿Seguro que querés eliminar esta categoría?")) return;
+    setMensaje("");
+    setError("");
+    try {
+      await eliminarCategoria(id);
+      setMensaje("Categoría eliminada correctamente.");
+      await cargar();
+    } catch (err) {
+      setError(err.message || "No se pudo eliminar la categoría.");
+    }
+  };
 
-		try {
-			if (editandoId) {
-				await actualizarCategoria(editandoId, { nombre });
-				setMensaje('Categoría actualizada correctamente.');
-			} else {
-				await crearCategoria({ nombre });
-				setMensaje('Categoría creada correctamente.');
-			}
+  return (
+    <div className="space-y-6">
+      <div>
+        <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#3B82F6]">Catálogo</p>
+        <h2 className="mt-2 text-3xl font-black text-white">Categorías</h2>
+        <p className="mt-1 text-sm text-slate-400">Administrá las categorías utilizadas por el catálogo.</p>
+      </div>
 
-			limpiarFormulario();
-			await cargarCategorias();
-		} catch (err) {
-			setError(err.message || 'Error al guardar la categoría.');
-		}
-	};
+      {mensaje && <div className="rounded-xl border border-emerald-800 bg-emerald-950/40 p-4 text-sm text-emerald-300">{mensaje}</div>}
+      {error && <div className="rounded-xl border border-red-800 bg-red-950/40 p-4 text-sm text-red-300">{error}</div>}
 
-	const iniciarEdicion = (categoria) => {
-		setEditandoId(categoria.id);
-		setForm({ nombre: categoria.nombre || '' });
-		setError('');
-		setMensaje('');
-	};
+      {accesoGestor && (
+        <form onSubmit={guardar} className="rounded-2xl border border-slate-700 bg-slate-900 p-5 sm:p-6">
+          <div className="mb-5 flex items-center justify-between">
+            <h3 className="text-xl font-bold text-white">{editando ? "Editar categoría" : "Nueva categoría"}</h3>
+            {editando && <button type="button" onClick={() => { setEditando(null); setForm(inicial); }} className="text-sm text-slate-400 hover:text-white">Cancelar</button>}
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <label>
+              <span className="mb-2 block text-sm font-semibold text-slate-300">Nombre</span>
+              <input name="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none focus:border-[#2563EB]" placeholder="Ej. Alimentación" />
+            </label>
+            <label>
+              <span className="mb-2 block text-sm font-semibold text-slate-300">Descripción</span>
+              <input name="description" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none focus:border-[#2563EB]" placeholder="Descripción de la categoría" />
+            </label>
+          </div>
+          <button type="submit" className="mt-5 rounded-xl bg-[#1D4ED8] px-5 py-3 font-bold text-white hover:bg-[#2563EB]">{editando ? "Guardar cambios" : "Crear categoría"}</button>
+        </form>
+      )}
 
-	const handleEliminar = async (id) => {
-		if (!window.confirm('¿Querés eliminar esta categoría?')) return;
-
-		try {
-			setError('');
-			await eliminarCategoria(id);
-			setMensaje('Categoría eliminada correctamente.');
-			await cargarCategorias();
-		} catch (err) {
-			setError(err.message || 'Error al eliminar la categoría.');
-		}
-	};
-
-	if (cargando) {
-		return <div className="p-8 text-slate-400">Cargando categorías...</div>;
-	}
-
-	return (
-		<div className="space-y-6">
-			<div>
-				<h2 className="text-2xl font-bold text-slate-100">Categorías</h2>
-				<p className="text-sm text-slate-400">
-					Organizá los productos según su categoría.
-				</p>
-			</div>
-
-			{mensaje && (
-				<div className="rounded-xl border border-emerald-800 bg-emerald-950/40 p-4 text-sm text-emerald-300">
-					{mensaje}
-				</div>
-			)}
-
-			{error && (
-				<div className="rounded-xl border border-red-800 bg-red-950/40 p-4 text-sm text-red-300">
-					{error}
-				</div>
-			)}
-
-			{accesoGestor && (
-				<form onSubmit={handleSubmit} className="rounded-2xl border border-slate-700 bg-slate-900 p-6">
-					<h3 className="mb-4 text-lg font-bold text-white">
-						{editandoId ? 'Editar categoría' : 'Nueva categoría'}
-					</h3>
-
-					<div className="flex flex-col gap-2 sm:flex-row">
-						<input
-							type="text"
-							name="nombre"
-							value={form.nombre}
-							onChange={(event) => setForm({ nombre: event.target.value })}
-							placeholder="Ej: Aventura"
-							className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-slate-100 placeholder:text-slate-500 focus:border-cyan-500 focus:outline-none"
-							required
-						/>
-						<button type="submit" className="rounded-lg bg-cyan-500 px-4 py-2 font-semibold text-slate-950 hover:bg-cyan-400">
-							{editandoId ? 'Guardar' : 'Crear'}
-						</button>
-						{editandoId && (
-							<button type="button" onClick={limpiarFormulario} className="rounded-lg border border-slate-600 px-4 py-2 font-semibold text-slate-200 hover:bg-slate-800">
-								Cancelar
-							</button>
-						)}
-					</div>
-				</form>
-			)}
-
-			<section className="overflow-hidden rounded-2xl border border-slate-700 bg-slate-900">
-				{categorias.length === 0 ? (
-					<p className="p-6 text-slate-400">Todavía no hay categorías creadas.</p>
-				) : (
-					<ul className="divide-y divide-slate-800">
-						{categorias.map((categoria) => (
-							<li key={categoria.id} className="flex items-center justify-between gap-4 px-6 py-4">
-								<div>
-									<p className="font-semibold text-white">{categoria.nombre}</p>
-									<p className="text-xs text-slate-500">ID {categoria.id}</p>
-								</div>
-								{accesoGestor && (
-									<div className="flex gap-2">
-										<button onClick={() => iniciarEdicion(categoria)} className="rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-500">
-											Editar
-										</button>
-										<button onClick={() => handleEliminar(categoria.id)} className="rounded-lg bg-red-600 px-3 py-2 text-sm font-semibold text-white hover:bg-red-500">
-											Eliminar
-										</button>
-									</div>
-								)}
-							</li>
-						))}
-					</ul>
-				)}
-			</section>
-		</div>
-	);
+      {cargando ? <p className="py-10 text-center text-slate-400">Cargando categorías...</p> : (
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {categorias.map((categoria) => (
+            <article key={categoria.id} className="rounded-2xl border border-slate-700 bg-slate-900 p-5">
+              <p className="text-xs font-bold uppercase tracking-wider text-[#93C5FD]">Categoría</p>
+              <h3 className="mt-2 text-xl font-bold text-white">{categoria.name}</h3>
+              <p className="mt-2 min-h-10 text-sm text-slate-400">{categoria.description || "Sin descripción."}</p>
+              {accesoGestor && <div className="mt-5 flex gap-2">
+                <button onClick={() => editar(categoria)} className="flex-1 rounded-lg bg-[#2563EB] px-3 py-2 text-sm font-semibold text-white hover:bg-[#1D4ED8]">Editar</button>
+                <button onClick={() => eliminar(categoria.id)} className="flex-1 rounded-lg bg-red-600 px-3 py-2 text-sm font-semibold text-white hover:bg-red-700">Eliminar</button>
+              </div>}
+            </article>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default AdminCategorias;
