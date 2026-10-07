@@ -1,0 +1,30 @@
+import sequelize from '../config/database.js';
+
+// Importamos solo los modelos iniciales
+import Client from './client.model.js';
+import Admin from './admin.model.js';
+import Rol from './rol.model.js';
+
+
+Rol.hasMany(Admin, {
+    foreignKey: 'idRol',
+    as: 'Admin',
+});
+Admin.belongsTo(Rol, {
+    foreignKey: 'idRol',
+    as: 'rol',
+});
+
+export {
+    sequelize,
+    Client,
+    Admin,
+    Rol
+};
+
+export default {
+    sequelize,
+    Client,
+    Admin,
+    Rol
+};

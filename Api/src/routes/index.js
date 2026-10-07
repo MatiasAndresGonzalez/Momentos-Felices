@@ -1,0 +1,15 @@
+import { Router } from 'express';
+import statusRoutes from './status.routes.js'
+import clientRoutes from './client.routes.js';
+import AdminRoutes from './admin.routes.js';
+import authRoutes from './auth.routes.js';
+
+const router = Router();
+
+router.use('/estado', statusRoutes);
+router.use('/client', clientRoutes);
+router.use('/admin', AdminRoutes);
+router.use('/auth', authRoutes);
+
+
+export default router;
