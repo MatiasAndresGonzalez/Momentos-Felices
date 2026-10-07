@@ -52,7 +52,7 @@ function Carrito() {
   return (
     <section className="space-y-8">
       <header>
-        <p className="text-xs font-bold uppercase tracking-[0.25em] text-orange-500">Tu compra</p>
+        <p className="text-xs font-bold uppercase tracking-[0.25em] text-#8B6F47">Tu compra</p>
         <h1 className="mt-2 text-3xl font-black text-slate-900 dark:text-white sm:text-4xl">Carrito</h1>
         <p className="mt-3 text-slate-600 dark:text-slate-300">Revisá tus productos antes de confirmar la compra.</p>
       </header>
@@ -63,7 +63,7 @@ function Carrito() {
       {items.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center dark:border-slate-700 dark:bg-slate-900">
           <p className="font-semibold text-slate-800 dark:text-white">Tu carrito está vacío.</p>
-          <Link to="/productos" className="mt-4 inline-block font-semibold text-orange-600">Explorar catálogo</Link>
+          <Link to="/productos" className="mt-4 inline-block font-semibold text-#765C39">Explorar catálogo</Link>
         </div>
       ) : (
         <div className="grid gap-8 lg:grid-cols-[1fr_20rem]">
@@ -74,9 +74,9 @@ function Carrito() {
               return (
                 <article key={item.id} className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-center gap-4">
-                    {producto?.image ? <img src={producto.image} alt={producto.name} className="h-20 w-20 rounded-xl object-cover" /> : <div className="flex h-20 w-20 items-center justify-center rounded-xl bg-orange-50 text-3xl">🧸</div>}
+                    {producto?.image ? <img src={producto.image} alt={producto.name} className="h-20 w-20 rounded-xl object-cover" /> : <div className="flex h-20 w-20 items-center justify-center rounded-xl bg-#FFF8E7 text-3xl">🧸</div>}
                     <div>
-                      <p className="text-xs font-semibold uppercase text-orange-500">{producto?.category}</p>
+                      <p className="text-xs font-semibold uppercase text-#8B6F47">{producto?.category}</p>
                       <h2 className="font-bold text-slate-900 dark:text-white">{producto?.name}</h2>
                       <p className="text-sm text-slate-500">$ {producto?.price}</p>
                     </div>
@@ -97,7 +97,7 @@ function Carrito() {
               <span className="text-slate-600 dark:text-slate-300">Total</span>
               <strong className="text-2xl text-slate-900 dark:text-white">$ {total.toFixed(2)}</strong>
             </div>
-            <button type="button" onClick={confirmar} disabled={procesando} className="mt-6 w-full rounded-xl bg-orange-500 px-4 py-3 font-semibold text-white hover:bg-orange-600 disabled:opacity-50">
+            <button type="button" onClick={confirmar} disabled={procesando} className="mt-6 w-full rounded-xl bg-#8B6F47 px-4 py-3 font-semibold text-white hover:bg-#765C39 disabled:opacity-50">
               {procesando ? "Confirmando..." : "Confirmar compra"}
             </button>
           </aside>
