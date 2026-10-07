@@ -22,6 +22,7 @@ function AdminLayout() {
       ? [{ to: "/admin/usuarios", label: "Administradores", icon: "👥" }]
       : []),
     { to: "/admin/productos", label: "Productos", icon: "🧸" },
+    { to: "/admin/categorias", label: "Categorías", icon: "🏷️" },
   ];
 
   const handleLogout = async () => {
