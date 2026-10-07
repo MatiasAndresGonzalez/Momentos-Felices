@@ -96,7 +96,7 @@ function AdminCategorias() {
 			<div>
 				<h2 className="text-2xl font-bold text-slate-100">Categorías</h2>
 				<p className="text-sm text-slate-400">
-					Organizá las excursiones según el tipo de experiencia.
+					Organizá los productos según su categoría.
 				</p>
 			</div>
 
