@@ -17,7 +17,7 @@ const imagenesProductos = {
   "Set de Regalo Bienvenido Bebé": "/images/products/regalo.svg",
 };
 const obtenerImagenProducto = (producto) =>
-  imagenesProductos[producto.name] || "/images/products/regalo.svg";
+  imagenesProductos[producto.name] || producto.image || "/images/products/regalo.svg";
 
 function Productos() {
   const [searchParams] = useSearchParams();
