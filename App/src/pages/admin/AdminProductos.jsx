@@ -10,16 +10,16 @@ import { listarCategoriasAdmin } from "../../services/adminCategoryService.js";
 
 const inicial = { name: "", price: "", stock: "", category: "", image: "" };
 const imagenesProductos = {
-  "Mamadera Anticólicos 250 ml": "/images/products/mamadera.svg",
-  "Set de Cubiertos Infantil": "/images/products/cubiertos.svg",
-  "Babero Impermeable": "/images/products/babero.svg",
-  "Kit Higiene Recién Nacido": "/images/products/kit-higiene.svg",
-  "Toalla con Capucha": "/images/products/toalla.svg",
-  "Body Manga Corta Algodón": "/images/products/body.svg",
-  "Pijama Enterito Suave": "/images/products/pijama.svg",
-  "Manta de Apego": "/images/products/manta.svg",
-  "Sonajero de Madera": "/images/products/sonajero.svg",
-  "Set de Regalo Bienvenido Bebé": "/images/products/regalo.svg",
+  "Mamadera Anticólicos 250 ml": "https://images.pexels.com/photos/8430563/pexels-photo-8430563.jpeg?auto=compress&cs=tinysrgb&w=900",
+  "Set de Cubiertos Infantil": "https://b2b.danishbydesign.com.au/cdn/shop/files/MU2380206MushieSpoon_ForkVanilla_2ea116c3-70dd-442a-9e3d-531bd8cfad85.jpg?v=1722306750&width=900",
+  "Babero Impermeable": "https://tinytowninc.com/cdn/shop/files/9_793b7b54-a800-49ed-8ce9-ca4c8e8a578f.jpg?v=1756152833&width=900",
+  "Kit Higiene Recién Nacido": "https://images.pexels.com/photos/20509002/pexels-photo-20509002.jpeg?auto=compress&cs=tinysrgb&w=900",
+  "Toalla con Capucha": "https://www.nordicnest.com/assets/blobs/liewood-albert-bath-cape-towel-with-hood-70x70-cm-sandy/647967-01_1_ProductImageMain-0279a33b54.png?dpr=2&preset=tiny",
+  "Body Manga Corta Algodón": "https://images.pexels.com/photos/3875080/pexels-photo-3875080.jpeg?auto=compress&cs=tinysrgb&w=900",
+  "Pijama Enterito Suave": "https://milksnob.com/cdn/shop/files/noeljammies.jpg?v=1695682669&width=900",
+  "Manta de Apego": "https://images.pexels.com/photos/29234753/pexels-photo-29234753.jpeg?auto=compress&cs=tinysrgb&w=900",
+  "Sonajero de Madera": "https://images.pexels.com/photos/4488187/pexels-photo-4488187.jpeg?auto=compress&cs=tinysrgb&w=900",
+  "Set de Regalo Bienvenido Bebé": "https://images.pexels.com/photos/19163673/pexels-photo-19163673.jpeg?auto=compress&cs=tinysrgb&w=900",
 };
 
 function AdminProductos() {
@@ -185,7 +185,7 @@ function AdminProductos() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {productos.map((p) => (
             <article key={p.id} className="overflow-hidden rounded-2xl border border-slate-700 bg-slate-900">
-              <img src={imagenesProductos[p.name] || "/images/products/regalo.svg"} alt={p.name} className="h-40 w-full object-cover" />
+              <img src={imagenesProductos[p.name] || p.image || "https://images.pexels.com/photos/29234753/pexels-photo-29234753.jpeg?auto=compress&cs=tinysrgb&w=900"} alt={p.name} className="h-40 w-full object-cover" />
               <div className="p-4">
                 <p className="text-xs font-semibold uppercase text-blue-400">{p.category}</p>
                 <h3 className="mt-1 font-bold text-white">{p.name}</h3>
