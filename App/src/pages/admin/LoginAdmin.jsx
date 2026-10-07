@@ -38,14 +38,14 @@ function LoginAdmin() {
 
   return (
     <div className="admin-theme flex min-h-screen items-center justify-center bg-[#1F2937] px-4 py-8">
-      <div className="w-full max-w-md rounded-2xl border border-[#4B5563]/80 border-t-2 border-t-#8B6F47 bg-[#263244] p-8 shadow-2xl">
+      <div className="w-full max-w-md rounded-2xl border border-[#4B5563]/80 border-t-2 border-t-#2563EB bg-[#263244] p-8 shadow-2xl">
         {/* Encabezado */}
         <div className="mb-8 text-center">
-          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-#8B6F47/10 ring-1 ring-#9A7B52/20">
-            <span className="text-sm font-black text-#B69A73">MF</span>
+          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-#2563EB/10 ring-1 ring-#3B82F6/20">
+            <span className="text-sm font-black text-#93C5FD">MF</span>
           </div>
 
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-#9A7B52">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-#3B82F6">
             Área de gestión
           </p>
 
@@ -82,7 +82,7 @@ function LoginAdmin() {
                     setClienteBloqueando(false);
                   }
                 }}
-                className="mt-4 w-full rounded-lg bg-#765C39 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-#8B6F47 disabled:opacity-50"
+                className="mt-4 w-full rounded-lg bg-#1D4ED8 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-#2563EB disabled:opacity-50"
               >
                 {clienteBloqueando ? "Cerrando sesión de cliente..." : "Cerrar sesión de cliente y continuar"}
               </button>
@@ -104,7 +104,7 @@ function LoginAdmin() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white placeholder-slate-600 outline-none transition focus:border-#8B6F47 focus:ring-2 focus:ring-#8B6F47/20"
+              className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white placeholder-slate-600 outline-none transition focus:border-#2563EB focus:ring-2 focus:ring-#2563EB/20"
               placeholder="admin@ejemplo.com"
               autoComplete="email"
               required
@@ -124,7 +124,7 @@ function LoginAdmin() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white placeholder-slate-600 outline-none transition focus:border-#8B6F47 focus:ring-2 focus:ring-#8B6F47/20"
+              className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white placeholder-slate-600 outline-none transition focus:border-#2563EB focus:ring-2 focus:ring-#2563EB/20"
               placeholder="*********"
               autoComplete="current-password"
               required
@@ -134,7 +134,7 @@ function LoginAdmin() {
           <button
             type="submit"
             disabled={enviando}
-            className="w-full rounded-xl bg-#765C39 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-950/30 transition hover:bg-#8B6F47 focus:outline-none focus:ring-2 focus:ring-#9A7B52/50 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:cursor-not-allowed disabled:opacity-50"
+            className="w-full rounded-xl bg-#1D4ED8 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-950/30 transition hover:bg-#2563EB focus:outline-none focus:ring-2 focus:ring-#3B82F6/50 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {enviando ? "Ingresando..." : "Ingresar al panel"}
           </button>
@@ -144,7 +144,7 @@ function LoginAdmin() {
         <div className="mt-7 border-t border-[#374151] pt-6 text-center">
           <Link
             to="/"
-            className="text-sm font-medium text-slate-400 transition hover:text-#9A7B52"
+            className="text-sm font-medium text-slate-400 transition hover:text-#3B82F6"
           >
             ← Volver al sitio público
           </Link>
