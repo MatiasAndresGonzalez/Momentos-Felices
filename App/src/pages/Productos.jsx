@@ -4,6 +4,20 @@ import { listarProductosPublicos } from "../services/productService.js";
 import { agregarAlCarrito } from "../services/carritoService.js";
 
 const categoriasIniciales = ["Alimentación", "Higiene", "Ropa", "Regalos"];
+const imagenesProductos = {
+  "Mamadera Anticólicos 250 ml": "/images/products/mamadera.svg",
+  "Set de Cubiertos Infantil": "/images/products/cubiertos.svg",
+  "Babero Impermeable": "/images/products/babero.svg",
+  "Kit Higiene Recién Nacido": "/images/products/kit-higiene.svg",
+  "Toalla con Capucha": "/images/products/toalla.svg",
+  "Body Manga Corta Algodón": "/images/products/body.svg",
+  "Pijama Enterito Suave": "/images/products/pijama.svg",
+  "Manta de Apego": "/images/products/manta.svg",
+  "Sonajero de Madera": "/images/products/sonajero.svg",
+  "Set de Regalo Bienvenido Bebé": "/images/products/regalo.svg",
+};
+const obtenerImagenProducto = (producto) =>
+  imagenesProductos[producto.name] || "/images/products/regalo.svg";
 
 function Productos() {
   const [searchParams] = useSearchParams();
@@ -32,7 +46,7 @@ function Productos() {
         const [campo, direccion] = orden.split("-");
         const data = await listarProductosPublicos({
           page: pagina,
-          limit: 12,
+          limit: 8,
           search: busqueda,
           category: categoria,
           sortBy: campo,
@@ -71,7 +85,7 @@ function Productos() {
     <section className="space-y-8">
       <header className="rounded-3xl bg-[#FFF8E7] px-5 py-8 dark:bg-[#F3E7D3] sm:px-8">
         <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#8B6F47]">Momentos Felices</p>
-        <h1 className="mt-2 text-3xl font-black tracking-tight text-slate-900 dark:text-white sm:text-4xl">Todo para acompañar cada momento</h1>
+        <h1 className="mt-2 text-3xl font-black tracking-tight text-[#3F352A] sm:text-4xl">Todo para acompañar cada momento</h1>
         <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">Descubrí productos pensados para bebés, niños y para regalar.</p>
       </header>
 
@@ -102,7 +116,7 @@ function Productos() {
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {productos.map((producto) => (
             <article key={producto.id} className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
-              {producto.image ? <img src={producto.image} alt={producto.name} className="h-52 w-full object-cover" /> : <div className="flex h-52 items-center justify-center bg-[#FFF8E7] text-4xl dark:bg-[#F3E7D3]">🍼</div>}
+              <img src={obtenerImagenProducto(producto)} alt={producto.name} className="h-52 w-full object-cover" />
               <div className="p-5">
                 <p className="text-xs font-semibold uppercase tracking-wide text-[#8B6F47]">{producto.category}</p>
                 <h2 className="mt-2 min-h-12 font-bold text-slate-900 dark:text-white">{producto.name}</h2>
