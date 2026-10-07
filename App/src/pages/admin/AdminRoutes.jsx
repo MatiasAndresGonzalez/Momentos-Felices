@@ -5,6 +5,7 @@ import LoginAdmin from "./LoginAdmin.jsx";
 import AdminDashboard from "./AdminDashboard.jsx";
 import AdminUsuarios from "./AdminUsuarios.jsx";
 import AdminProductos from "./AdminProductos.jsx";
+import AdminCategorias from "./AdminCategorias.jsx";
 
 function AdminRoutes() {
   return (
@@ -21,6 +22,7 @@ function AdminRoutes() {
         <Route index element={<AdminDashboard />} />
         <Route path="usuarios" element={<AdminUsuarios />} />
         <Route path="productos" element={<AdminProductos />} />
+        <Route path="categorias" element={<AdminCategorias />} />
       </Route>
     </Routes>
   );
