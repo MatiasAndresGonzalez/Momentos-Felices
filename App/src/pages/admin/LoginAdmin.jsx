@@ -4,12 +4,13 @@ import { useAdminAuth } from "../../context/AdminAuthContext.jsx";
 
 function LoginAdmin() {
   const navigate = useNavigate();
-  const { login } = useAdminAuth();
+  const { login, cerrarSesionClienteYContinuar } = useAdminAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [enviando, setEnviando] = useState(false);
+  const [clienteBloqueando, setClienteBloqueando] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -63,7 +64,29 @@ function LoginAdmin() {
             role="alert"
             className="mb-5 rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm font-medium text-red-300"
           >
-            {error}
+            <p>{error}</p>
+            {error.includes("Ya posee una sesión de Cliente activa") && (
+              <button
+                type="button"
+                disabled={clienteBloqueando}
+                onClick={async () => {
+                  setClienteBloqueando(true);
+                  setError("");
+                  try {
+                    await cerrarSesionClienteYContinuar();
+                    const admin = await login(email, password);
+                    navigate("/admin");
+                  } catch (err) {
+                    setError(err.message || "No se pudo iniciar la sesión de administrador.");
+                  } finally {
+                    setClienteBloqueando(false);
+                  }
+                }}
+                className="mt-4 w-full rounded-lg bg-orange-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-orange-500 disabled:opacity-50"
+              >
+                {clienteBloqueando ? "Cerrando sesión de cliente..." : "Cerrar sesión de cliente y continuar"}
+              </button>
+            )}
           </div>
         )}
 
