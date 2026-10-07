@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import { listarProductos, obtenerProducto, crearProducto, actualizarProducto, eliminarProducto } from '../controllers/product.controller.js';
+import { verificarAdmin, verificarRolCatalogo } from '../middleware/auth.js';
+const router = Router();
+router.get('/', listarProductos);
+router.get('/:id', obtenerProducto);
+router.post('/', verificarAdmin, verificarRolCatalogo, crearProducto);
+router.put('/:id', verificarAdmin, verificarRolCatalogo, actualizarProducto);
+router.delete('/:id', verificarAdmin, verificarRolCatalogo, eliminarProducto);
+export default router;
