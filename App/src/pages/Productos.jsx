@@ -69,8 +69,8 @@ function Productos() {
 
   return (
     <section className="space-y-8">
-      <header className="rounded-3xl bg-#FFF8E7 px-5 py-8 dark:bg-#F3E7D3 sm:px-8">
-        <p className="text-xs font-bold uppercase tracking-[0.25em] text-#8B6F47">Momentos Felices</p>
+      <header className="rounded-3xl bg-[#FFF8E7] px-5 py-8 dark:bg-[#F3E7D3] sm:px-8">
+        <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#8B6F47]">Momentos Felices</p>
         <h1 className="mt-2 text-3xl font-black tracking-tight text-slate-900 dark:text-white sm:text-4xl">Todo para acompañar cada momento</h1>
         <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">Descubrí productos pensados para bebés, niños y para regalar.</p>
       </header>
@@ -78,12 +78,12 @@ function Productos() {
       {mensaje && <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-700">{mensaje}</div>}
 
       <div className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:grid-cols-3">
-        <input type="search" value={busqueda} onChange={cambiarBusqueda} placeholder="Buscar productos..." className="rounded-xl border border-slate-300 bg-transparent px-4 py-3 text-sm outline-none focus:border-#8B6F47 dark:border-slate-700" />
-        <select value={categoria} onChange={cambiarCategoria} className="rounded-xl border border-slate-300 bg-transparent px-4 py-3 text-sm outline-none focus:border-#8B6F47 dark:border-slate-700">
+        <input type="search" value={busqueda} onChange={cambiarBusqueda} placeholder="Buscar productos..." className="rounded-xl border border-slate-300 bg-transparent px-4 py-3 text-sm outline-none focus:border-[#8B6F47] dark:border-slate-700" />
+        <select value={categoria} onChange={cambiarCategoria} className="rounded-xl border border-slate-300 bg-transparent px-4 py-3 text-sm outline-none focus:border-[#8B6F47] dark:border-slate-700">
           <option value="">Todas las categorías</option>
           {categorias.map((item) => <option key={item} value={item}>{item}</option>)}
         </select>
-        <select value={orden} onChange={(event) => { setOrden(event.target.value); setPagina(1); }} className="rounded-xl border border-slate-300 bg-transparent px-4 py-3 text-sm outline-none focus:border-#8B6F47 dark:border-slate-700">
+        <select value={orden} onChange={(event) => { setOrden(event.target.value); setPagina(1); }} className="rounded-xl border border-slate-300 bg-transparent px-4 py-3 text-sm outline-none focus:border-[#8B6F47] dark:border-slate-700">
           <option value="name-ASC">Nombre A-Z</option>
           <option value="name-DESC">Nombre Z-A</option>
           <option value="price-ASC">Precio menor a mayor</option>
@@ -102,16 +102,16 @@ function Productos() {
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {productos.map((producto) => (
             <article key={producto.id} className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
-              {producto.image ? <img src={producto.image} alt={producto.name} className="h-52 w-full object-cover" /> : <div className="flex h-52 items-center justify-center bg-#FFF8E7 text-4xl dark:bg-#F3E7D3">🍼</div>}
+              {producto.image ? <img src={producto.image} alt={producto.name} className="h-52 w-full object-cover" /> : <div className="flex h-52 items-center justify-center bg-[#FFF8E7] text-4xl dark:bg-[#F3E7D3]">🍼</div>}
               <div className="p-5">
-                <p className="text-xs font-semibold uppercase tracking-wide text-#8B6F47">{producto.category}</p>
+                <p className="text-xs font-semibold uppercase tracking-wide text-[#8B6F47]">{producto.category}</p>
                 <h2 className="mt-2 min-h-12 font-bold text-slate-900 dark:text-white">{producto.name}</h2>
                 <div className="mt-4 flex items-end justify-between gap-3">
                   <div>
                     <p className="text-xl font-black text-slate-900 dark:text-white">$ {producto.price}</p>
                     <span className="text-xs text-slate-500">{producto.stock > 0 ? `Stock: ${producto.stock}` : "Sin stock"}</span>
                   </div>
-                  <button type="button" disabled={Number(producto.stock) <= 0} onClick={() => agregar(producto)} className="rounded-xl bg-#8B6F47 px-3 py-2 text-sm font-bold text-white hover:bg-#765C39 disabled:cursor-not-allowed disabled:bg-slate-300">
+                  <button type="button" disabled={Number(producto.stock) <= 0} onClick={() => agregar(producto)} className="rounded-xl bg-[#8B6F47] px-3 py-2 text-sm font-bold text-white hover:bg-[#765C39] disabled:cursor-not-allowed disabled:bg-slate-300">
                     Agregar
                   </button>
                 </div>
