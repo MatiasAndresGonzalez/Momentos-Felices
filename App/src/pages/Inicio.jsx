@@ -1,211 +1,110 @@
-// Inicio.jsx
-// Página principal de Descubre Córdoba.
-//
-// Tiene un hero con carrusel automático de imágenes.
-// No necesita backend.
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { listarProductosPublicos } from "../services/productService.js";
 
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-
-import cordoba1 from '../assets/img/cordoba1.png';
-import cordoba2 from '../assets/img/cordoba2.png';
-import cordoba3 from '../assets/img/cordoba3.png';
-
-// Declaramos las imágenes fuera del componente.
-// Así el array no se vuelve a crear en cada render.
-const imagenes = [
-  cordoba1,
-  cordoba2,
-  cordoba3,
+const categorias = [
+  { nombre: "Alimentación", icono: "🍼", texto: "Todo para las primeras comidas y momentos." },
+  { nombre: "Higiene", icono: "🛁", texto: "Cuidado diario para tu bebé." },
+  { nombre: "Ropa", icono: "👕", texto: "Prendas cómodas para cada etapa." },
+  { nombre: "Regalos", icono: "🎁", texto: "Detalles especiales para regalar." },
 ];
 
 function Inicio() {
-  // Guarda cuál imagen está visible.
-  const [indiceActual, setIndiceActual] = useState(0);
+  const [productos, setProductos] = useState([]);
 
-  // Cambia automáticamente de imagen cada 5 segundos.
   useEffect(() => {
-    const intervalo = setInterval(() => {
-      setIndiceActual((indiceAnterior) => {
-        // Si estamos en la última imagen,
-        // volvemos a la primera.
-        if (indiceAnterior === imagenes.length - 1) {
-          return 0;
-        }
-
-        // Si no, avanzamos una.
-        return indiceAnterior + 1;
-      });
-    }, 5000);
-
-    // Limpiamos el intervalo cuando se desmonta el componente.
-    return () => clearInterval(intervalo);
+    listarProductosPublicos({ page: 1, limit: 4, sortBy: "name", order: "ASC" })
+      .then((data) => setProductos(data.productos || data.rows || []))
+      .catch(() => setProductos([]));
   }, []);
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-black">
-
-      {/* =====================================================
-          IMAGEN DE FONDO
-      ====================================================== */}
-      <div className="absolute inset-0">
-
-        <img
-          src={imagenes[indiceActual]}
-          alt="Paisaje de Córdoba"
-          className="h-full w-full object-cover"
-        />
-
-        {/* Overlay oscuro para mejorar la lectura del texto */}
-        <div className="absolute inset-0 bg-linear-to-r from-black/85 via-black/55 to-black/10" />
-
-        {/* Sombra inferior */}
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-black/70 to-transparent" />
-
-      </div>
-
-
-      {/* =====================================================
-          CONTENIDO PRINCIPAL
-      ====================================================== */}
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-5 pb-24 pt-28 sm:px-6 lg:px-8">
-
-        <div className="max-w-2xl text-white">
-
-          {/* TEXTO SUPERIOR */}
-          <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.28em] text-orange-400 sm:text-xs sm:tracking-[0.35em]">
-            Naturaleza · aventura · experiencias
-          </p>
-
-
-          {/* TÍTULO PRINCIPAL */}
-          <h1 className="text-4xl font-black leading-[0.95] tracking-tight sm:text-5xl lg:text-6xl">
-
-            VIVÍ LA
-
-            <span className="block text-orange-500">
-              AVENTURA
-            </span>
-
+    <div className="space-y-16 pb-10">
+      <section className="relative overflow-hidden rounded-3xl bg-slate-950 px-6 py-16 text-white sm:px-10 sm:py-20 lg:px-16">
+        <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-orange-500/20 blur-3xl" />
+        <div className="relative max-w-3xl">
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-orange-400">Momentos Felices</p>
+          <h1 className="mt-4 text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">
+            Todo lo que necesitás para acompañar
+            <span className="block text-orange-500">cada momento.</span>
           </h1>
-
-
-          {/* SUBTÍTULO */}
-          <p className="mt-5 text-sm uppercase tracking-[0.25em] text-orange-100 sm:text-base lg:text-lg">
-            Córdoba te espera
+          <p className="mt-6 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
+            Productos seleccionados para bebés, niños y familias. Encontrá lo que buscás de forma simple, rápida y segura.
           </p>
-
-
-          {/* DETALLE VISUAL */}
-          <div className="my-5 flex items-center gap-3">
-
-            <div className="h-px w-16 bg-orange-500 sm:w-20" />
-
-            <span className="text-sm text-orange-500">
-              ◆
-            </span>
-
-            <div className="h-px w-16 bg-orange-500 sm:w-20" />
-
-          </div>
-
-
-          {/* DESCRIPCIÓN */}
-          <p className="max-w-xl text-sm leading-6 text-white/85 sm:text-base sm:leading-7 lg:text-lg">
-            Explorá la naturaleza, viví experiencias inolvidables
-            y descubrí rincones únicos de Córdoba.
-          </p>
-
-
-          {/* =================================================
-              BOTONES
-          ================================================== */}
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-
-            <Link
-              to="/excursiones"
-              className="rounded-xl bg-orange-500 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-orange-600"
-            >
-              Explorar experiencias
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Link to="/productos" className="rounded-xl bg-orange-500 px-6 py-3 text-center text-sm font-bold text-white transition hover:bg-orange-600">
+              Ver catálogo
             </Link>
-
-            {/* Va a la página de registro */}
-            <Link
-              to="/registro"
-              className="rounded-xl border border-white/60 bg-black/20 px-6 py-3 text-center text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white hover:text-black"
-            >
-              Crear mi cuenta
+            <Link to="/registro" className="rounded-xl border border-white/30 px-6 py-3 text-center text-sm font-bold transition hover:bg-white hover:text-slate-950">
+              Crear una cuenta
             </Link>
-
           </div>
+        </div>
+      </section>
 
+      <section>
+        <div className="mb-7">
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-orange-500">Encontrá lo que necesitás</p>
+          <h2 className="mt-2 text-3xl font-black text-slate-900 dark:text-white">Categorías</h2>
+        </div>
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+          {categorias.map((categoria) => (
+            <Link
+              key={categoria.nombre}
+              to={"/productos?category=" + encodeURIComponent(categoria.nombre)}
+              className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-orange-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-900"
+            >
+              <span className="text-4xl">{categoria.icono}</span>
+              <h3 className="mt-4 font-bold text-slate-900 dark:text-white">{categoria.nombre}</h3>
+              <p className="mt-2 text-sm leading-5 text-slate-500 dark:text-slate-400">{categoria.texto}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
 
-          {/* =================================================
-              DESTACADOS
-          ================================================== */}
-          <div className="mt-10 grid max-w-2xl grid-cols-1 gap-5 border-t border-white/20 pt-6 sm:grid-cols-3">
-
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-orange-400">
-                Paisajes
-              </p>
-
-              <p className="mt-1 text-sm text-white/70">
-                Impactantes
-              </p>
-            </div>
-
-
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-orange-400">
-                Experiencias
-              </p>
-
-              <p className="mt-1 text-sm text-white/70">
-                Auténticas
-              </p>
-            </div>
-
-
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-orange-400">
-                Rincones
-              </p>
-
-              <p className="mt-1 text-sm text-white/70">
-                Únicos
-              </p>
-            </div>
-
+      <section>
+        <div className="mb-7 flex items-end justify-between gap-4">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.25em] text-orange-500">Selección especial</p>
+            <h2 className="mt-2 text-3xl font-black text-slate-900 dark:text-white">Productos destacados</h2>
           </div>
-
+          <Link to="/productos" className="hidden text-sm font-bold text-orange-500 hover:text-orange-600 sm:block">Ver todo →</Link>
         </div>
 
-      </div>
+        {productos.length > 0 ? (
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {productos.map((producto) => (
+              <article key={producto.id} className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                {producto.image ? (
+                  <img src={producto.image} alt={producto.name} className="h-48 w-full object-cover" />
+                ) : (
+                  <div className="flex h-48 items-center justify-center bg-orange-50 text-5xl dark:bg-orange-950/20">🧸</div>
+                )}
+                <div className="p-4">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-orange-500">{producto.category}</p>
+                  <h3 className="mt-2 font-bold text-slate-900 dark:text-white">{producto.name}</h3>
+                  <p className="mt-3 text-lg font-black text-slate-900 dark:text-white">$ {producto.price}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-2xl border border-dashed border-slate-300 p-10 text-center text-sm text-slate-500 dark:border-slate-700">
+            Próximamente vas a encontrar nuestros productos destacados.
+          </div>
+        )}
+      </section>
 
-
-      {/* =====================================================
-          INDICADORES DEL CARRUSEL
-      ====================================================== */}
-      <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 items-center gap-3">
-
-        {imagenes.map((_, index) => (
-          <button
-            key={index}
-            type="button"
-            aria-label={`Mostrar imagen ${index + 1}`}
-            onClick={() => setIndiceActual(index)}
-            className={`rounded-full transition-all duration-300 ${
-              indiceActual === index
-                ? 'h-2.5 w-7 bg-orange-500'
-                : 'h-2.5 w-2.5 bg-white/50 hover:bg-white'
-            }`}
-          />
-        ))}
-
-      </div>
-
-    </section>
+      <section className="rounded-3xl border border-orange-100 bg-orange-50 p-7 dark:border-orange-900/30 dark:bg-orange-950/20 sm:p-10">
+        <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+          <div>
+            <h2 className="text-2xl font-black text-slate-900 dark:text-white">¿Buscás algo en particular?</h2>
+            <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Explorá todo nuestro catálogo y encontrá el producto ideal.</p>
+          </div>
+          <Link to="/productos" className="rounded-xl bg-orange-500 px-6 py-3 text-sm font-bold text-white hover:bg-orange-600">Explorar catálogo</Link>
+        </div>
+      </section>
+    </div>
   );
 }
 
