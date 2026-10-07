@@ -76,7 +76,7 @@ function Login() {
         {/* ENCABEZADO */}
         <div className="mb-7 text-center">
 
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-#8B6F47">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#8B6F47]">
             Bienvenido
           </p>
 
@@ -114,7 +114,7 @@ function Login() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full rounded-xl border border-[#D9C2A6] px-4 py-3 outline-none transition focus:border-#8B6F47"
+            className="w-full rounded-xl border border-[#D9C2A6] px-4 py-3 outline-none transition focus:border-[#8B6F47]"
           />
 
           {/* CONTRASEÑA */}
@@ -128,14 +128,14 @@ function Login() {
             value={contrasenia}
             onChange={(e) => setContrasenia(e.target.value)}
             required
-            className="w-full rounded-xl border border-neutral-300 px-4 py-3 outline-none transition focus:border-#8B6F47"
+            className="w-full rounded-xl border border-neutral-300 px-4 py-3 outline-none transition focus:border-[#8B6F47]"
           />
 
           {/* BOTÓN */}
           <button
             type="submit"
             disabled={enviando}
-            className="mt-6 w-full rounded-xl bg-#8B6F47 py-3 font-semibold text-white transition hover:bg-#765C39 disabled:cursor-not-allowed disabled:opacity-50"
+            className="mt-6 w-full rounded-xl bg-[#8B6F47] py-3 font-semibold text-white transition hover:bg-[#765C39] disabled:cursor-not-allowed disabled:opacity-50"
           >
             {enviando
               ? 'Ingresando...'
@@ -151,7 +151,7 @@ function Login() {
 
           <Link
             to="/registro"
-            className="font-semibold text-#765C39 hover:text-orange-700"
+            className="font-semibold text-[#765C39] hover:text-[#8B6F47]"
           >
             Registrate
           </Link>
