@@ -42,7 +42,7 @@ function LoginAdmin() {
         {/* Encabezado */}
         <div className="mb-8 text-center">
           <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-500/10 ring-1 ring-orange-400/20">
-            <span className="text-sm font-black text-orange-300">DC</span>
+            <span className="text-sm font-black text-orange-300">MF</span>
           </div>
 
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange-400">
