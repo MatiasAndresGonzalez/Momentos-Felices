@@ -68,7 +68,7 @@ function Inicio() {
         ) : <div className="rounded-2xl border border-dashed border-slate-300 p-10 text-center text-sm text-slate-500 dark:border-slate-700">Próximamente vas a encontrar nuestros productos destacados.</div>}
       </section>
 
-      <section className="rounded-3xl border border-[#E8D8C3] bg-[#FFF8E7] p-7 dark:border-#D9C2A6 dark:bg-[#F3E7D3] sm:p-10">
+      <section className="rounded-3xl border border-[#E8D8C3] bg-[#FFF8E7] p-7 dark:border-[#D9C2A6] dark:bg-[#F3E7D3] sm:p-10">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center"><div><h2 className="text-2xl font-black text-slate-900 dark:text-[#3F352A]">¿Buscás algo en particular?</h2><p className="mt-2 text-sm text-slate-600 dark:text-[#6E5C49]">Explorá todo nuestro catálogo y encontrá el producto ideal.</p></div><Link to="/productos" className="rounded-xl bg-[#8B6F47] px-6 py-3 text-sm font-bold text-[#3F352A] hover:bg-[#765C39]">Explorar catálogo</Link></div>
       </section>
     </div>
