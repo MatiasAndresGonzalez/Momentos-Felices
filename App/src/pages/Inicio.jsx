@@ -3,6 +3,18 @@ import { Link } from "react-router-dom";
 import { listarProductosPublicos } from "../services/productService.js";
 import { agregarAlCarrito } from "../services/carritoService.js";
 
+const imagenesProductos = {
+  "Mamadera Anticólicos 250 ml": "/images/products/mamadera.svg",
+  "Set de Cubiertos Infantil": "/images/products/cubiertos.svg",
+  "Babero Impermeable": "/images/products/babero.svg",
+  "Kit Higiene Recién Nacido": "/images/products/kit-higiene.svg",
+  "Toalla con Capucha": "/images/products/toalla.svg",
+  "Body Manga Corta Algodón": "/images/products/body.svg",
+  "Pijama Enterito Suave": "/images/products/pijama.svg",
+  "Manta de Apego": "/images/products/manta.svg",
+  "Sonajero de Madera": "/images/products/sonajero.svg",
+  "Set de Regalo Bienvenido Bebé": "/images/products/regalo.svg",
+};
 const categorias = [
   { nombre: "Alimentación", icono: "🍼", texto: "Todo para las primeras comidas y momentos." },
   { nombre: "Higiene", icono: "🛁", texto: "Cuidado diario para tu bebé." },
@@ -35,7 +47,7 @@ function Inicio() {
           <h1 className="mt-4 text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">Todo lo que necesitás para acompañar<span className="block text-[#8B6F47]">cada momento.</span></h1>
           <p className="mt-6 max-w-2xl text-base leading-7 text-[#6E5C49] sm:text-lg">Productos seleccionados para bebés, niños y familias. Encontrá lo que buscás de forma simple, rápida y segura.</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link to="/productos" className="rounded-xl bg-[#8B6F47] px-6 py-3 text-center text-sm font-bold text-[#3F352A] transition hover:bg-[#765C39]">Ver catálogo</Link>
+            <Link to="/productos" className="rounded-xl bg-[#8B6F47] px-6 py-3 text-center text-sm font-bold text-white transition hover:bg-[#765C39]">Ver catálogo</Link>
             <Link to="/registro" className="rounded-xl border border-white/30 px-6 py-3 text-center text-sm font-bold transition hover:bg-white hover:text-slate-950">Crear una cuenta</Link>
           </div>
         </div>
@@ -60,8 +72,8 @@ function Inicio() {
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {productos.map((producto) => (
               <article key={producto.id} className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
-                {producto.image ? <img src={producto.image} alt={producto.name} className="h-48 w-full object-cover" /> : <div className="flex h-48 items-center justify-center bg-[#FFF8E7] text-5xl dark:bg-[#F3E7D3]">🧸</div>}
-                <div className="p-4"><p className="text-xs font-semibold uppercase tracking-wide text-[#8B6F47]">{producto.category}</p><h3 className="mt-2 font-bold text-slate-900 dark:text-[#3F352A]">{producto.name}</h3><p className="mt-3 text-lg font-black text-slate-900 dark:text-[#3F352A]">$ {producto.price}</p><button type="button" disabled={Number(producto.stock) <= 0} onClick={() => agregar(producto)} className="mt-4 w-full rounded-xl bg-[#8B6F47] px-4 py-2.5 text-sm font-bold text-[#3F352A] hover:bg-[#765C39] disabled:bg-slate-300">Agregar al carrito</button></div>
+                <img src={imagenesProductos[producto.name] || "/images/products/regalo.svg"} alt={producto.name} className="h-48 w-full object-cover" />
+                <div className="p-4"><p className="text-xs font-semibold uppercase tracking-wide text-[#8B6F47]">{producto.category}</p><h3 className="mt-2 font-bold text-slate-900 dark:text-[#3F352A]">{producto.name}</h3><p className="mt-3 text-lg font-black text-slate-900 dark:text-[#3F352A]">$ {producto.price}</p><button type="button" disabled={Number(producto.stock) <= 0} onClick={() => agregar(producto)} className="mt-4 w-full rounded-xl bg-[#8B6F47] px-4 py-2.5 text-sm font-bold text-white hover:bg-[#765C39] disabled:bg-slate-300">Agregar al carrito</button></div>
               </article>
             ))}
           </div>
@@ -69,7 +81,7 @@ function Inicio() {
       </section>
 
       <section className="rounded-3xl border border-[#E8D8C3] bg-[#FFF8E7] p-7 dark:border-[#D9C2A6] dark:bg-[#F3E7D3] sm:p-10">
-        <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center"><div><h2 className="text-2xl font-black text-slate-900 dark:text-[#3F352A]">¿Buscás algo en particular?</h2><p className="mt-2 text-sm text-slate-600 dark:text-[#6E5C49]">Explorá todo nuestro catálogo y encontrá el producto ideal.</p></div><Link to="/productos" className="rounded-xl bg-[#8B6F47] px-6 py-3 text-sm font-bold text-[#3F352A] hover:bg-[#765C39]">Explorar catálogo</Link></div>
+        <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center"><div><h2 className="text-2xl font-black text-slate-900 dark:text-[#3F352A]">¿Buscás algo en particular?</h2><p className="mt-2 text-sm text-slate-600 dark:text-[#6E5C49]">Explorá todo nuestro catálogo y encontrá el producto ideal.</p></div><Link to="/productos" className="rounded-xl bg-[#8B6F47] px-6 py-3 text-sm font-bold text-white hover:bg-[#765C39]">Explorar catálogo</Link></div>
       </section>
     </div>
   );
