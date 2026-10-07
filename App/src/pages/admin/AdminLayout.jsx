@@ -31,7 +31,7 @@ function AdminLayout() {
 
   if (cargando) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-slate-950 text-slate-400">
+      <div className="flex min-h-screen items-center justify-center bg-[#1F2937] text-[#9CA3AF]">
         <p>Cargando panel...</p>
       </div>
     );
@@ -39,15 +39,15 @@ function AdminLayout() {
 
   return (
     <div className="admin-theme flex min-h-screen flex-col bg-slate-950 md:flex-row">
-      <aside className="flex w-full flex-col border-b border-orange-500/70 bg-slate-900 md:min-h-screen md:w-64 md:border-b-0 md:border-r md:border-r-orange-500/70">
-        <div className="border-b border-slate-800 p-5">
+      <aside className="flex w-full flex-col border-b border-#8B6F47/70 bg-[#263244] md:min-h-screen md:w-64 md:border-b-0 md:border-r md:border-r-#8B6F47/70">
+        <div className="border-b border-[#374151] p-5">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-400/10 ring-1 ring-orange-400/20">
-              <span className="text-sm font-black text-orange-300">MF</span>
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-#9A7B52/10 ring-1 ring-#9A7B52/20">
+              <span className="text-sm font-black text-#B69A73">MF</span>
             </div>
             <div>
               <h2 className="text-base font-bold text-white">Panel de Gestión</h2>
-              <p className="text-xs text-slate-500">Momentos Felices</p>
+              <p className="text-xs text-[#9CA3AF]">Momentos Felices</p>
             </div>
           </div>
         </div>
@@ -59,7 +59,7 @@ function AdminLayout() {
               to={item.to}
               end={item.to === "/admin"}
               className={({ isActive }) =>
-                `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition ${isActive ? "bg-orange-600 text-white" : "text-slate-300 hover:bg-slate-800 hover:text-white"}`
+                `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition ${isActive ? "bg-#765C39 text-white" : "text-[#D1D5DB] hover:bg-[#374151] hover:text-white"}`
               }
             >
               <span>{item.icon}</span>
@@ -72,14 +72,14 @@ function AdminLayout() {
           <div className="mb-4 rounded-xl bg-slate-950/60 p-3">
             <p className="truncate text-sm font-semibold text-white">{admin?.nombre}</p>
             <p className="mt-1 text-xs text-slate-500">Rol</p>
-            <span className="text-xs font-semibold uppercase text-orange-400">
+            <span className="text-xs font-semibold uppercase text-#9A7B52">
               {admin?.rol}
             </span>
           </div>
 
           <button
             onClick={handleLogout}
-            className="w-full rounded-xl border border-slate-700 px-3 py-2.5 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white"
+            className="w-full rounded-xl border border-[#4B5563] px-3 py-2.5 text-sm font-medium text-slate-300 hover:bg-[#374151] hover:text-white"
           >
             Cerrar sesión
           </button>
@@ -102,7 +102,7 @@ function AdminLayout() {
               </p>
             </div>
 
-            <div className="hidden rounded-full border border-orange-400/20 bg-orange-400/10 px-3 py-1.5 text-xs font-semibold uppercase text-orange-300 md:block">
+            <div className="hidden rounded-full border border-#9A7B52/20 bg-#9A7B52/10 px-3 py-1.5 text-xs font-semibold uppercase text-#B69A73 md:block">
               {admin?.rol}
             </div>
           </div>
