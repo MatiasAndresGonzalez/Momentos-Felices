@@ -5,6 +5,7 @@ import AdminRoutes from './admin.routes.js';
 import authRoutes from './auth.routes.js';
 import productRoutes from './product.routes.js';
 import sessionRoutes from './session.routes.js';
+import categoryRoutes from './category.routes.js';
 
 const router = Router();
 
@@ -14,5 +15,6 @@ router.use('/admin', AdminRoutes);
 router.use('/auth', authRoutes);
 router.use('/auth', sessionRoutes);
 router.use('/products', productRoutes);
+router.use('/categories', categoryRoutes);
 
 export default router;
