@@ -7,6 +7,7 @@ import { Client,
     Admin,
     Rol,
 } from '../models/index.js';
+import { issueSession } from './session.controller.js';
 
 
 export const loginCliente = async (req, res) => {
@@ -38,16 +39,13 @@ export const loginCliente = async (req, res) => {
             });
         }
 
-        const token = generarToken({
-            id: cliente.id,
-            email: cliente.email,
-            type: 'client',
-        }, JWT_SECRET_CLIENT);
+        const sesion = await issueSession(cliente, 'client');
 
         res.json({
             estado: true,
             mensaje: 'Login de cliente exitoso',
-            token,
+            token: sesion.token,
+            refreshToken: sesion.refreshToken,
             usuario: {
                 id: cliente.id,
                 nombre: cliente.nombre,
