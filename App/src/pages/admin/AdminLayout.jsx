@@ -4,7 +4,7 @@ import { useAdminAuth } from "../../context/AdminAuthContext.jsx";
 const menuItems = [
   { to: "/admin", label: "Inicio", icon: "🏠" },
   { to: "/admin/usuarios", label: "Administradores", icon: "👥" },
-  { to: "/admin/excursiones", label: "Excursiones", icon: "🏔️" },
+  { to: "/admin/productos", label: "Productos", icon: "🧸" },
   { to: "/admin/categorias", label: "Categorías", icon: "🗂️" },
   { to: "/admin/compras", label: "Compras", icon: "🧾" },
 ];
@@ -45,7 +45,7 @@ function AdminLayout() {
         <div className="border-b border-slate-800 p-5">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-orange-400/10 text-lg ring-1 ring-orange-400/20">
-              <span className="text-sm font-black text-orange-300">DC</span>
+              <span className="text-sm font-black text-orange-300">MF</span>
             </div>
 
             <div>
@@ -113,7 +113,7 @@ function AdminLayout() {
                 {esAdmin
                   ? "Acceso total: podés gestionar usuarios y roles."
                   : esGestor
-                  ? "Acceso al Catálogo: podés gestionar el catálogo de productos."
+                  ? "Acceso al catálogo: podés gestionar productos y categorías."
                   : esAuditor
                   ? "Acceso a las métricas: podés consultar las métricas"
                   : "Sesión de administración."}
