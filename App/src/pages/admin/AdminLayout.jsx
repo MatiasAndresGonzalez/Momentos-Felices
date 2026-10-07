@@ -1,15 +1,28 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useAdminAuth } from "../../context/AdminAuthContext.jsx";
 
-const menuItems = [
-  { to: "/admin", label: "Inicio", icon: "🏠" },
-  { to: "/admin/usuarios", label: "Administradores", icon: "👥" },
-  { to: "/admin/productos", label: "Productos", icon: "🧸" },
-];
-
 function AdminLayout() {
-  const { admin, logout, esAdmin, esGestor, esAuditor, accesoTotal, accesoGestor, accesoAuditor, cargando } = useAdminAuth();
+  const {
+    admin,
+    logout,
+    esAdmin,
+    esGestor,
+    esAuditor,
+    accesoTotal,
+    accesoGestor,
+    accesoAuditor,
+    cargando,
+  } = useAdminAuth();
+
   const navigate = useNavigate();
+
+  const menuItems = [
+    { to: "/admin", label: "Inicio", icon: "🏠" },
+    ...(esAdmin
+      ? [{ to: "/admin/usuarios", label: "Administradores", icon: "👥" }]
+      : []),
+    { to: "/admin/productos", label: "Productos", icon: "🧸" },
+  ];
 
   const handleLogout = async () => {
     await logout();
@@ -17,7 +30,11 @@ function AdminLayout() {
   };
 
   if (cargando) {
-    return <div className="flex min-h-screen items-center justify-center bg-slate-950 text-slate-400"><p>Cargando panel...</p></div>;
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-slate-950 text-slate-400">
+        <p>Cargando panel...</p>
+      </div>
+    );
   }
 
   return (
@@ -37,10 +54,16 @@ function AdminLayout() {
 
         <nav className="flex flex-col gap-1 p-3">
           {menuItems.map((item) => (
-            <NavLink key={item.to} to={item.to} end={item.to === "/admin"} className={({ isActive }) =>
-              `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition ${isActive ? "bg-orange-600 text-white" : "text-slate-300 hover:bg-slate-800 hover:text-white"}`
-            }>
-              <span>{item.icon}</span><span>{item.label}</span>
+            <NavLink
+              key={item.to}
+              to={item.to}
+              end={item.to === "/admin"}
+              className={({ isActive }) =>
+                `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition ${isActive ? "bg-orange-600 text-white" : "text-slate-300 hover:bg-slate-800 hover:text-white"}`
+              }
+            >
+              <span>{item.icon}</span>
+              <span>{item.label}</span>
             </NavLink>
           ))}
         </nav>
@@ -49,9 +72,15 @@ function AdminLayout() {
           <div className="mb-4 rounded-xl bg-slate-950/60 p-3">
             <p className="truncate text-sm font-semibold text-white">{admin?.nombre}</p>
             <p className="mt-1 text-xs text-slate-500">Rol</p>
-            <span className="text-xs font-semibold uppercase text-orange-400">{admin?.rol}</span>
+            <span className="text-xs font-semibold uppercase text-orange-400">
+              {admin?.rol}
+            </span>
           </div>
-          <button onClick={handleLogout} className="w-full rounded-xl border border-slate-700 px-3 py-2.5 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white">
+
+          <button
+            onClick={handleLogout}
+            className="w-full rounded-xl border border-slate-700 px-3 py-2.5 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white"
+          >
             Cerrar sesión
           </button>
         </div>
@@ -63,14 +92,34 @@ function AdminLayout() {
             <div>
               <h1 className="text-xl font-bold text-white">Panel de Gestión</h1>
               <p className="mt-1 text-sm text-slate-400">
-                {esAdmin ? "Acceso total: usuarios y catálogo." : esGestor ? "Gestión del catálogo de productos." : esAuditor ? "Consulta del catálogo." : "Sesión de administración."}
+                {esAdmin
+                  ? "Acceso total: usuarios y catálogo."
+                  : esGestor
+                    ? "Gestión del catálogo de productos."
+                    : esAuditor
+                      ? "Consulta del catálogo."
+                      : "Sesión de administración."}
               </p>
             </div>
-            <div className="hidden rounded-full border border-orange-400/20 bg-orange-400/10 px-3 py-1.5 text-xs font-semibold uppercase text-orange-300 md:block">{admin?.rol}</div>
+
+            <div className="hidden rounded-full border border-orange-400/20 bg-orange-400/10 px-3 py-1.5 text-xs font-semibold uppercase text-orange-300 md:block">
+              {admin?.rol}
+            </div>
           </div>
         </header>
+
         <main className="flex-1 p-4 sm:p-6">
-          <Outlet context={{ esAdmin, esGestor, esAuditor, accesoTotal, accesoGestor, accesoAuditor, puedeEscribir: accesoTotal || accesoGestor }} />
+          <Outlet
+            context={{
+              esAdmin,
+              esGestor,
+              esAuditor,
+              accesoTotal,
+              accesoGestor,
+              accesoAuditor,
+              puedeEscribir: accesoTotal || accesoGestor,
+            }}
+          />
         </main>
       </div>
     </div>
