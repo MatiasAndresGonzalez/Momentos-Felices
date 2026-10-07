@@ -48,7 +48,7 @@ export const loginCliente = async (req, res) => {
             estado: true,
             mensaje: 'Login de cliente exitoso',
             token,
-            cliente: {
+            usuario: {
                 id: cliente.id,
                 nombre: cliente.nombre,
                 email: cliente.email,
@@ -320,7 +320,7 @@ export const refreshTokenAdmin = async (req, res) => {
             estado: true,
             mensaje: 'Token de administrador validado y renovado',
             token,
-            admin: {
+            usuario: {
                 id: admin.id,
                 nombre: admin.nombre,
                 email: admin.email,
