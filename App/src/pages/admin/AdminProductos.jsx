@@ -9,6 +9,18 @@ import { useAdminAuth } from "../../context/AdminAuthContext.jsx";
 import { listarCategoriasAdmin } from "../../services/adminCategoryService.js";
 
 const inicial = { name: "", price: "", stock: "", category: "", image: "" };
+const imagenesProductos = {
+  "Mamadera Anticólicos 250 ml": "/images/products/mamadera.svg",
+  "Set de Cubiertos Infantil": "/images/products/cubiertos.svg",
+  "Babero Impermeable": "/images/products/babero.svg",
+  "Kit Higiene Recién Nacido": "/images/products/kit-higiene.svg",
+  "Toalla con Capucha": "/images/products/toalla.svg",
+  "Body Manga Corta Algodón": "/images/products/body.svg",
+  "Pijama Enterito Suave": "/images/products/pijama.svg",
+  "Manta de Apego": "/images/products/manta.svg",
+  "Sonajero de Madera": "/images/products/sonajero.svg",
+  "Set de Regalo Bienvenido Bebé": "/images/products/regalo.svg",
+};
 
 function AdminProductos() {
   const { accesoGestor } = useAdminAuth();
@@ -173,7 +185,7 @@ function AdminProductos() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {productos.map((p) => (
             <article key={p.id} className="overflow-hidden rounded-2xl border border-slate-700 bg-slate-900">
-              {p.image ? <img src={p.image} alt={p.name} className="h-40 w-full object-cover" /> : <div className="flex h-40 items-center justify-center bg-slate-800 text-4xl">🍼</div>}
+              <img src={imagenesProductos[p.name] || "/images/products/regalo.svg"} alt={p.name} className="h-40 w-full object-cover" />
               <div className="p-4">
                 <p className="text-xs font-semibold uppercase text-blue-400">{p.category}</p>
                 <h3 className="mt-1 font-bold text-white">{p.name}</h3>
