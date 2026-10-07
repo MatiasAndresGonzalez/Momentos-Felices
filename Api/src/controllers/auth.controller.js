@@ -270,18 +270,13 @@ export const loginAdmin = async (req, res) => {
             });
         }
 
-        const token = generarToken({
-            id: admin.id,
-            email: admin.email,
-            type: 'admin',
-            idRol: admin.idRol,
-            rol: admin.rol.nombre
-        }, JWT_SECRET_ADMIN);
+        const sesion = await issueSession(admin, 'admin');
 
         res.json({
             estado: true,
             mensaje: 'Login de administrador exitoso',
-            token,
+            token: sesion.token,
+            refreshToken: sesion.refreshToken,
             usuario: {
                 id: admin.id,
                 nombre: admin.nombre,
