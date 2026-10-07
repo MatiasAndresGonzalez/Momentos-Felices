@@ -197,3 +197,12 @@ export const verificarRolAdmin = (req, res, next) => {
 
     next();
 };
+
+export const verificarRolCatalogo = (req, res, next) => {
+  if (!req.admin?.rol) return res.status(403).json({ estado:false, mensaje:'No se pudo verificar el rol' });
+  const rol = req.admin.rol.nombre.toUpperCase();
+  if (!['SUPERADMIN','GESTOR'].includes(rol)) {
+    return res.status(403).json({ estado:false, mensaje:'Esta acción requiere permisos de catálogo' });
+  }
+  next();
+};
